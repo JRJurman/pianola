@@ -1,4 +1,4 @@
-# Key-Sheet
+# Pianola
 
 Program to select and show different cords for the piano
 
