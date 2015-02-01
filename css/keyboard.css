@@ -1,0 +1,16 @@
+rect {
+  stroke-width:1;
+  stroke:rgb(150, 150, 150)
+}
+
+rect.white-key {
+  fill:rgb(255, 255, 255);
+}
+
+rect.black-key {
+  fill:rgb(0, 0, 0);
+}
+
+rect.selected {
+  fill:rgb(97, 148, 223);
+}
