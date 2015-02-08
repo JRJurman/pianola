@@ -3,3 +3,7 @@ body {
   margin-left: 5%;
   margin-right: 5%;
 }
+
+h1.title {
+  font-size: 50px;
+}
