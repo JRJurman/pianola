@@ -2,6 +2,7 @@ var Keyboard = React.createClass({
   render: function() {
     return (
       <div>
+        <h3>{this.props.chord}</h3>
         <Octive number="0" selected={this.props.first} />
         <Octive number="1" selected={this.props.second} />
         <Octive number="2" selected={this.props.third} />
@@ -81,8 +82,3 @@ var BlackKey = React.createClass({
     )
   }
 });
-
-React.render(
-  <Keyboard first="" second="" third=""/>,
-  document.getElementById('keyboard-div')
-);

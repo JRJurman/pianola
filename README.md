@@ -1,6 +1,6 @@
 # Pianola
 
-Program to select and show different cords for the piano
+Program to select and show different chords for the piano
 
 ## To Run on your local machine
 To run the program, install npm, and run the following
