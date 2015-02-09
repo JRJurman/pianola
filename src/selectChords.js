@@ -6,6 +6,7 @@ var SelectChords = React.createClass({
         <ChordGroup sKey="C#" />
         <ChordGroup sKey="Db" />
         <ChordGroup sKey="D" />
+        <ChordGroup sKey="D#" />
         <ChordGroup sKey="Eb" />
         <ChordGroup sKey="E" />
         <ChordGroup sKey="F" />
