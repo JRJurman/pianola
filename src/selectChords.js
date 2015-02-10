@@ -1,7 +1,7 @@
 var SelectChords = React.createClass({
   render: function() {
     return (
-      <select id="input-tags" multiple placeholder="Select a Chord...">
+      <select id="input-tags" multiple placeholder="Type in Chord...">
         <ChordGroup sKey="C" />
         <ChordGroup sKey="C#" />
         <ChordGroup sKey="Db" />
@@ -64,7 +64,6 @@ var DefaultChords = React.createClass({
         <BetterOption value={key+" 11"} />
         <BetterOption value={key+" m11"} />
         <BetterOption value={key+" 13"} />
-        <BetterOption value={key+" sus"} />
         <BetterOption value={key+" sus2"} />
         <BetterOption value={key+" sus4"} />
         <BetterOption value={key+"7 sus4"} />

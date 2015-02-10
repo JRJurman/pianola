@@ -1,6 +1,6 @@
 rect {
   stroke-width:1;
-  stroke:rgb(150, 150, 150)
+  stroke:rgb(200, 200, 200)
 }
 
 rect.white-key {
@@ -11,6 +11,10 @@ rect.black-key {
   fill:rgb(0, 0, 0);
 }
 
-rect.selected {
-  fill:rgb(97, 148, 223);
+rect.white-key.selected {
+  fill:rgb(255,166,28);
+}
+
+rect.black-key.selected {
+  fill:rgb(255,117,24);
 }

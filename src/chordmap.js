@@ -1,25 +1,4 @@
-var chordmap = {
-  "C 7": {
-    first:"",
-    second:"Cn, En, Gn, A#",
-    third:""
-  },
-  "C/F": {
-    first:"Fn",
-    second:"Cn, En, Gn",
-    third:""
-  },
-  "F sus": {
-    first:"",
-    second:"Fn, A#",
-    third:"Cn"
-  },
-  "F/A": {
-    first:"An",
-    second:"Fn, An",
-    third:"Cn"
-  }
-}
+var chordmap = {};
 
 var base_keyset = ["Cn", "C#", "Dn", "D#", "En", "Fn", "F#", "Gn", "G#", "An", "A#", "Bn"]
 var keyset = [base_keyset, base_keyset, base_keyset].join(",").split(",");
@@ -35,35 +14,11 @@ var getIndex = function(note) {
   return noteIndex;
 }
 
-var getScale = function(steps) {
-  return steps.map( function(element, index, array) {
-    return array.slice(0,index+1).reduce( function(prevValue, currValue) {
-      return prevValue+currValue;
-    });
-  });
-};
-
-var getDegrees = function(note, steps) {
-  var noteIndex = getIndex(note);
-  var scale = getScale(steps)
-  return {
-    tonic: noteIndex,
-    supertonic: noteIndex + scale[0],
-    mediant: noteIndex + scale[1],
-    subdominant: noteIndex + scale[2],
-    dominant: noteIndex + scale[3],
-    submediant: noteIndex + scale[4],
-    leading: noteIndex + scale[5],
-    octave: noteIndex + scale[6]
-  };
-}
-
-var getFingering = function(note, steps, degrees) {
-  var mDeg = getDegrees(note, steps);
+var getFingering = function(note, steps) {
   var octiveSet = {first: "", second: "", third: ""};
   var components = [];
-  degrees.forEach( function(e) {
-    components.push(mDeg[e]);
+  steps.forEach( function(e) {
+    components.push(getIndex(note) + e);
   });
   components.forEach( function(element) {
     if (element < base_keyset.length) {
@@ -80,19 +35,27 @@ var getFingering = function(note, steps, degrees) {
 };
 
 var getMajor = function(note) {
-  // whole whole half whole whole whole half
-  return getFingering(note, [2,2,1,2,2,2,1], ["tonic", "mediant", "dominant"]);
+  return getFingering(note, [0, 4, 7]);
 }
 
 var getMinor = function(note) {
-  // whole half whole whole half whole whole
-  return getFingering(note, [2,1,2,2,1,2,2], ["tonic", "mediant", "dominant"]);
+  return getFingering(note, [0, 3, 7]);
 }
 
-// TODO FIX THIS!
-var getMajor7 = function(note) {
-  // whole whole half whole whole whole half
-  return getFingering(note, [2,2,1,2,2,2,1], ["tonic", "mediant", "dominant", "leading"]);
+var getM7 = function(note) {
+  return getFingering(note, [0, 3, 7, 10])
+}
+
+var getMaj7 = function(note) {
+  return getFingering(note, [0, 4, 7, 11]);
+}
+
+var getDominant7 = function(note) {
+  return getFingering(note, [0, 4, 7, 10]);
+}
+
+var getDim = function(note) {
+  return getFingering(note, [0, 3, 6]);
 }
 
 var keys = ["C", "C#", "Db", "D", "D#", "Eb",
@@ -102,5 +65,8 @@ var keys = ["C", "C#", "Db", "D", "D#", "Eb",
 keys.forEach( function(e) {
    chordmap[e+" major"] = getMajor(e);
    chordmap[e+" minor"] = getMinor(e);
-  //  chordmap[e+" 7"] = getMajor7(e);
+   chordmap[e+" 7"] = getDominant7(e);
+   chordmap[e+" maj7"] = getMaj7(e);
+   chordmap[e+" m7"] = getM7(e);
+   chordmap[e+" dim"] = getDim(e);
 });

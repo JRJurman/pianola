@@ -4,6 +4,42 @@ body {
   margin-right: 5%;
 }
 
+table {
+  width: 700px;
+}
+
 h1.title {
   font-size: 50px;
+}
+
+a {
+  color: #FFA61C;
+}
+
+a:hover {
+  color: #ff7518;
+}
+
+.selectize-control.multi .selectize-input>div {
+  border: 0px;
+}
+
+.selectize-control.multi .selectize-input>div.active {
+  border: 0px;
+}
+
+.selectize-control.multi .selectize-input [data-value] {
+  text-shadow: 0 0px 0 rgba(0,51,83,.3);
+  background-color: #FFA61C;
+  background-image: linear-gradient(to bottom,#FFA61C,#FFA61C)
+}
+
+.selectize-control.multi .selectize-input [data-value].active {
+  text-shadow: 0 0px 0 rgba(0,51,83,.3);
+  background-color: #ff7518;
+  background-image: linear-gradient(to bottom,#ff7518,#ff7518)
+}
+
+.selectize-dropdown .active {
+  background-color: #FBF5E0;
 }
