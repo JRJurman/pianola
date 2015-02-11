@@ -86,8 +86,8 @@ keys.forEach( function(e) {
    chordmap[e+" major"] = getMajor(e);
    chordmap[e+" minor"] = getMinor(e);
    chordmap[e+" 7"] = getDominant7(e);
-   chordmap[e+" maj7"] = getMaj7(e);
    chordmap[e+" m7"] = getM7(e);
+   chordmap[e+" maj7"] = getMaj7(e);
    chordmap[e+" mM7"] = getMinorMajor7(e);
    chordmap[e+" 7b5"] = get7thFlatFive(e);
    chordmap[e+" 7#5"] = get7thSharpFive(e);
