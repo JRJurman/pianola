@@ -42,6 +42,10 @@ var getMinor = function(note) {
   return getFingering(note, [0, 3, 7]);
 }
 
+var getDominant7 = function(note) {
+  return getFingering(note, [0, 4, 7, 10]);
+}
+
 var getM7 = function(note) {
   return getFingering(note, [0, 3, 7, 10])
 }
@@ -50,8 +54,24 @@ var getMaj7 = function(note) {
   return getFingering(note, [0, 4, 7, 11]);
 }
 
-var getDominant7 = function(note) {
-  return getFingering(note, [0, 4, 7, 10]);
+var getMinorMajor7 = function(note) {
+  return getFingering(note, [0, 3, 7, 11]);
+}
+
+var get7thFlatFive = function(note) {
+  return getFingering(note, [0, 4, 6, 10]);
+}
+
+var get7thSharpFive = function(note) {
+  return getFingering(note, [0, 4, 8, 10])
+}
+
+var get7thFlatNinth = function(note) {
+  return getFingering(note, [0, 4, 7, 10, 13])
+}
+
+var get7thSharpNinth = function(note) {
+  return getFingering(note, [0, 4, 7, 10, 15])
 }
 
 var getDim = function(note) {
@@ -66,7 +86,13 @@ keys.forEach( function(e) {
    chordmap[e+" major"] = getMajor(e);
    chordmap[e+" minor"] = getMinor(e);
    chordmap[e+" 7"] = getDominant7(e);
-   chordmap[e+" maj7"] = getMaj7(e);
    chordmap[e+" m7"] = getM7(e);
+   chordmap[e+" maj7"] = getMaj7(e);
+   chordmap[e+" mM7"] = getMinorMajor7(e);
+   chordmap[e+" 7b5"] = get7thFlatFive(e);
+   chordmap[e+" 7#5"] = get7thSharpFive(e);
+   chordmap[e+" 7b9"] = get7thFlatNinth(e);
+   chordmap[e+" 7#9"] = get7thSharpNinth(e);
+
    chordmap[e+" dim"] = getDim(e);
 });
