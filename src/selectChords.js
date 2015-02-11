@@ -52,6 +52,7 @@ var DefaultChords = React.createClass({
         <BetterOption value={key+" 7b5"} />
         <BetterOption value={key+" 7#5"} />
         <BetterOption value={key+" 7b9"} />
+        <BetterOption value={key+" 7#9"} />
         <BetterOption value={key+" b5"} />
         <BetterOption value={key+" 5"} />
         <BetterOption value={key+" 6"} />
