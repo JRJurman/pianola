@@ -74,6 +74,14 @@ var get7thSharpNinth = function(note) {
   return getFingering(note, [0, 4, 7, 10, 15])
 }
 
+var getFlatFifth = function(note) {
+  return getFingering(note, [0, 4, 6]);
+}
+
+var getFifth = function(note) {
+  return getFingering(note, [0, 7, 12])
+}
+
 var getDim = function(note) {
   return getFingering(note, [0, 3, 6]);
 }
@@ -93,6 +101,8 @@ keys.forEach( function(e) {
    chordmap[e+" 7#5"] = get7thSharpFive(e);
    chordmap[e+" 7b9"] = get7thFlatNinth(e);
    chordmap[e+" 7#9"] = get7thSharpNinth(e);
+   chordmap[e+" b5"] = getFlatFifth(e);
+   chordmap[e+" 5"] = getFifth(e);
 
    chordmap[e+" dim"] = getDim(e);
 });

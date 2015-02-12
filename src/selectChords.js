@@ -19,8 +19,6 @@ var SelectChords = React.createClass({
         <ChordGroup sKey="A#" />
         <ChordGroup sKey="Bb" />
         <ChordGroup sKey="B" />
-        <ChordGroup sKey="B#" />
-
       </select>
     );
   }
@@ -80,14 +78,6 @@ var DefaultChords = React.createClass({
         <BetterOption value={key+"/A"} />
         <BetterOption value={key+"/B"} />
       </div>
-    );
-  }
-});
-
-var UniqueChords = React.createClass({
-  render: function() {
-    return (
-      <div />
     );
   }
 });
