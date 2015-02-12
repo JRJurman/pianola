@@ -29,8 +29,7 @@ var ChordGroup = React.createClass({displayName: "ChordGroup",
     var key = this.props.sKey;
     return (
       React.createElement("optgroup", {label: key}, 
-        React.createElement(DefaultChords, {sKey: key}), 
-        React.createElement(UniqueChords, {sKey: key})
+        React.createElement(DefaultChords, {sKey: key})
       )
     );
   }

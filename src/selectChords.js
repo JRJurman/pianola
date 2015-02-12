@@ -30,7 +30,6 @@ var ChordGroup = React.createClass({
     return (
       <optgroup label={key}>
         <DefaultChords sKey={key} />
-        <UniqueChords sKey={key} />
       </optgroup>
     );
   }
