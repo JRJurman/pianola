@@ -18,9 +18,7 @@ var SelectChords = React.createClass({displayName: "SelectChords",
         React.createElement(ChordGroup, {sKey: "A"}), 
         React.createElement(ChordGroup, {sKey: "A#"}), 
         React.createElement(ChordGroup, {sKey: "Bb"}), 
-        React.createElement(ChordGroup, {sKey: "B"}), 
-        React.createElement(ChordGroup, {sKey: "B#"})
-
+        React.createElement(ChordGroup, {sKey: "B"})
       )
     );
   }
@@ -31,8 +29,7 @@ var ChordGroup = React.createClass({displayName: "ChordGroup",
     var key = this.props.sKey;
     return (
       React.createElement("optgroup", {label: key}, 
-        React.createElement(DefaultChords, {sKey: key}), 
-        React.createElement(UniqueChords, {sKey: key})
+        React.createElement(DefaultChords, {sKey: key})
       )
     );
   }
@@ -80,14 +77,6 @@ var DefaultChords = React.createClass({displayName: "DefaultChords",
         React.createElement(BetterOption, {value: key+"/A"}), 
         React.createElement(BetterOption, {value: key+"/B"})
       )
-    );
-  }
-});
-
-var UniqueChords = React.createClass({displayName: "UniqueChords",
-  render: function() {
-    return (
-      React.createElement("div", null)
     );
   }
 });

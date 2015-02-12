@@ -34,65 +34,23 @@ var getFingering = function(note, steps) {
   return octiveSet;
 };
 
-var getMajor = function(note) {
-  return getFingering(note, [0, 4, 7]);
-}
-
-var getMinor = function(note) {
-  return getFingering(note, [0, 3, 7]);
-}
-
-var getDominant7 = function(note) {
-  return getFingering(note, [0, 4, 7, 10]);
-}
-
-var getM7 = function(note) {
-  return getFingering(note, [0, 3, 7, 10])
-}
-
-var getMaj7 = function(note) {
-  return getFingering(note, [0, 4, 7, 11]);
-}
-
-var getMinorMajor7 = function(note) {
-  return getFingering(note, [0, 3, 7, 11]);
-}
-
-var get7thFlatFive = function(note) {
-  return getFingering(note, [0, 4, 6, 10]);
-}
-
-var get7thSharpFive = function(note) {
-  return getFingering(note, [0, 4, 8, 10])
-}
-
-var get7thFlatNinth = function(note) {
-  return getFingering(note, [0, 4, 7, 10, 13])
-}
-
-var get7thSharpNinth = function(note) {
-  return getFingering(note, [0, 4, 7, 10, 15])
-}
-
-var getDim = function(note) {
-  return getFingering(note, [0, 3, 6]);
-}
-
 var keys = ["C", "C#", "Db", "D", "D#", "Eb",
  "E", "F", "F#", "Gb", "G", "G#", "Ab",
  "A", "A#", "Bb", "B"];
 
 keys.forEach( function(e) {
-   chordmap[e+" major"] = getMajor(e);
-   chordmap[e+" minor"] = getMinor(e);
-   chordmap[e+" 7"] = getDominant7(e);
-   chordmap[e+" m7"] = getM7(e);
-   chordmap[e+" maj7"] = getMaj7(e);
-   chordmap[e+" mM7"] = getMinorMajor7(e);
-   chordmap[e+" 7b5"] = get7thFlatFive(e);
-   chordmap[e+" 7#5"] = get7thSharpFive(e);
-   chordmap[e+" 7b9"] = get7thFlatNinth(e);
-   chordmap[e+" 7#9"] = get7thSharpNinth(e);
+   chordmap[e+" major"] = getFingering(note, [0, 4, 7]);
+   chordmap[e+" minor"] = getFingering(note, [0, 3, 7]);
+   chordmap[e+" 7"] = getFingering(note, [0, 4, 7, 10]);
+   chordmap[e+" m7"] = getFingering(note, [0, 3, 7, 10]);
+   chordmap[e+" maj7"] = getFingering(note, [0, 4, 7, 11]);
+   chordmap[e+" mM7"] = getFingering(note, [0, 3, 7, 11]);
+   chordmap[e+" 7b5"] = getFingering(note, [0, 4, 6, 10]);
+   chordmap[e+" 7#5"] = getFingering(note, [0, 4, 8, 10]);
+   chordmap[e+" 7b9"] = getFingering(note, [0, 4, 7, 10, 13]);
+   chordmap[e+" 7#9"] = getFingering(note, [0, 4, 7, 10, 15]);
+   chordmap[e+" b5"] = getFingering(note, [0, 4, 6]);
+   chordmap[e+" 5"] = getFingering(note, [0, 7, 12]);
 
-   chordmap[e+" dim"] = getDim(e);
+   chordmap[e+" dim"] = getFingering(note, [0, 3, 6]);
 });
