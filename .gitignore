@@ -1,1 +1,4 @@
 build/.module-cache
+
+# files I want ignored, but are not generated or commonplace
+.gitignore2
