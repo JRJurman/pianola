@@ -1,17 +1,27 @@
-var keyboarderizer = function() {
-  document.getElementById("chord-error").style.display = 'none';
+// keyboarderizer.js
+// created By Jesse Jurman
+// renders a collection of keyboards in a table or div
 
+var React = require('react');
+var Keyboard = require('./keyboard');
+var chordMap = require('./chordMap');
+
+// function to render the keyboards
+var keyboarderizer = function() {
   var selectInput = $("#input-tags")[0].selectize;
   var selectChords = selectInput.items;
 
   var keyboardTable = document.getElementById("keyboard-table");
   keyboardTable.innerHTML = "";
 
+  // for every chord that has been entered
   Array.prototype.forEach.call( selectChords, function(chord, index) {
 
     var new_keyboard;
     var tableRow;
 
+    // if the view is greater than 700px, show 2 columns in a table
+    // otherwise throw keyboad objects in their own divs
     if (window.innerWidth >= 700) {
       if ( (index % 2) == 0 ) {
         tableRow = document.createElement('tr');
@@ -32,18 +42,16 @@ var keyboarderizer = function() {
     var new_key_id = 'keyboard-td-'+index;
     new_keyboard.setAttribute('id', new_key_id );
     tableRow.appendChild(new_keyboard);
+    var chordItem = chordMap[chord];
 
-    var itemChord;
-    if (chordmap.hasOwnProperty(chord)) {
-      itemChord = chordmap[chord];
-      React.render(
-        <Keyboard chord={chord} first={itemChord.first} second={itemChord.second} third={itemChord.third} />,
-        document.getElementById(new_key_id)
-      );
-    }
-    else {
-      document.getElementById("chord-error").style.display = '';
-    }
+    React.render(
+      <Keyboard chord={chord} first={chordItem.value.first}
+                              second={chordItem.value.second}
+                              third={chordItem.value.third} />,
+      document.getElementById(new_key_id)
+    );
 
   });
 }
+
+module.exports = keyboarderizer;

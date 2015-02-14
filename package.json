@@ -12,6 +12,7 @@
     "gulp-gh-pages": "^0.4.0",
     "gulp-watch": "^4.1.1",
     "gulp-webserver": "^0.9.0",
+    "microplugin": "0.0.3",
     "react": "^0.12.2",
     "reactify": "^1.0.0",
     "vinyl-source-stream": "^1.0.0"

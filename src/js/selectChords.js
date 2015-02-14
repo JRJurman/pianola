@@ -1,96 +1,75 @@
+// selectChords.js
+// created By Jesse Jurman
+// react class that renders the selectize input
+
+var React = require('react');
+var keyboarderizer = require('./keyboarderizer');
+var popDropdown = require('./popDropdown');
+var chordMap = require('./chordMap');
+
 var SelectChords = React.createClass({
   render: function() {
+    var placeholder = "Click here, and type in a chord..."
     return (
-      <select id="input-tags" multiple placeholder="Type in Chord...">
-        <ChordGroup sKey="C" />
-        <ChordGroup sKey="C#" />
-        <ChordGroup sKey="Db" />
-        <ChordGroup sKey="D" />
-        <ChordGroup sKey="D#" />
-        <ChordGroup sKey="Eb" />
-        <ChordGroup sKey="E" />
-        <ChordGroup sKey="F" />
-        <ChordGroup sKey="F#" />
-        <ChordGroup sKey="Gb" />
-        <ChordGroup sKey="G" />
-        <ChordGroup sKey="G#" />
-        <ChordGroup sKey="Ab" />
-        <ChordGroup sKey="A" />
-        <ChordGroup sKey="A#" />
-        <ChordGroup sKey="Bb" />
-        <ChordGroup sKey="B" />
+      <select id="input-tags" ref="selectize" multiple placeholder={placeholder}>
       </select>
     );
+  },
+
+  // when it mounts, add all the selectize attributes
+  componentDidMount: function() {
+    var chords = Object.keys(chordMap);
+    var keys = ["C", "C#", "Db", "D", "D#", "Eb",
+     "E", "F", "F#", "Gb", "G", "G#", "Ab",
+     "A", "A#", "Bb", "B"];
+
+    // TODO: is this redundent?
+    var chords = chords.map( function(e) {
+      return {tonic:chordMap[e].tonic, chord:e}
+    });
+
+    var select = $(this.refs.selectize.getDOMNode()).selectize({
+      delimiter: ',',
+      persist: false,
+      maxOptions: 5,
+      onChange: function() {
+        keyboarderizer();
+        popDropdown();
+      },
+      onDropdownOpen: function() {
+        popDropdown();
+      },
+      onDropdownClose: function() {
+        popDropdown();
+      },
+
+      optgroupField: 'tonic',
+      labelField: 'chord',
+      valueField: 'chord',
+      //sortField: ['sortId'], // C- something or other
+      searchField: ['chord'],
+      render: {
+        option: function(data) {
+          return '<option tonic=\"'+data.tonic+'\" chord=\"'+data.chord+'\">'+ data.chord + '</option>';
+        }
+      },
+
+    });
+
+    var selectize = select[0].selectize;
+
+    keys.forEach( function(k) {
+      selectize.addOptionGroup(k, {'label':k, 'value':k});
+    });
+    selectize.addOption(chords);
+
+    selectize.refreshOptions(true);
+
+    // TODO move this
+    window.onresize = function() {
+      keyboarderizer();
+    };
   }
 });
 
-var ChordGroup = React.createClass({
-  render: function() {
-    var key = this.props.sKey;
-    return (
-      <optgroup label={key}>
-        <DefaultChords sKey={key} />
-      </optgroup>
-    );
-  }
-});
-
-var DefaultChords = React.createClass({
-  render: function() {
-    var key = this.props.sKey;
-    return (
-      <div>
-        <BetterOption value={key+" major"} />
-        <BetterOption value={key+" minor"} />
-        <BetterOption value={key+" 7"} />
-        <BetterOption value={key+" m7"} />
-        <BetterOption value={key+" maj7"} />
-        <BetterOption value={key+" mM7"} />
-        <BetterOption value={key+" 7b5"} />
-        <BetterOption value={key+" 7#5"} />
-        <BetterOption value={key+" 7b9"} />
-        <BetterOption value={key+" 7#9"} />
-        <BetterOption value={key+" b5"} />
-        <BetterOption value={key+" 5"} />
-        <BetterOption value={key+" 6"} />
-        <BetterOption value={key+" m6"} />
-        <BetterOption value={key+" 69"} />
-        <BetterOption value={key+" 9"} />
-        <BetterOption value={key+" m9"} />
-        <BetterOption value={key+" maj9"} />
-        <BetterOption value={key+" add9"} />
-        <BetterOption value={key+" 11"} />
-        <BetterOption value={key+" m11"} />
-        <BetterOption value={key+" 13"} />
-        <BetterOption value={key+" sus2"} />
-        <BetterOption value={key+" sus4"} />
-        <BetterOption value={key+"7 sus4"} />
-        <BetterOption value={key+" dim"} />
-        <BetterOption value={key+" dim7"} />
-        <BetterOption value={key+" half dim"} />
-        <BetterOption value={key+"/C"} />
-        <BetterOption value={key+"/D"} />
-        <BetterOption value={key+"/E"} />
-        <BetterOption value={key+"/Eb"} />
-        <BetterOption value={key+"/F"} />
-        <BetterOption value={key+"/G"} />
-        <BetterOption value={key+"/A"} />
-        <BetterOption value={key+"/B"} />
-      </div>
-    );
-  }
-});
-
-var BetterOption = React.createClass({
-  render: function() {
-    var value = this.props.value;
-    return (
-      <option value={value}>{value}</option>
-    );
-  }
-});
-
-React.render(
-  <SelectChords />,
-  document.getElementById('input-tags-div')
-);
+module.exports = SelectChords;

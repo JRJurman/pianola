@@ -9,10 +9,11 @@ var deploy = require('gulp-gh-pages');
 
 var paths = {
   scripts: './src/js/**/*.@(js|jsx)',
-  js_main: './src/js/app.jsx',
+  js_main: './src/js/main.jsx',
   html: './src/**/*.html',
   images: './src/**/*.png',
   css: './src/css/*.css',
+  build_css: './build/css',
   build_files: './build/**/*',
   build_dir: './build'
 };
@@ -40,7 +41,7 @@ gulp.task('build:html', function(){
 
 gulp.task('build:css', function(){
   gulp.src(paths.css)
-    .pipe(gulp.dest(paths.build_dir));
+    .pipe(gulp.dest(paths.build_css));
 });
 
 gulp.task('build:images', function(){

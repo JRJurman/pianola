@@ -1,3 +1,11 @@
+// keyboard.js
+// created By Jesse Jurman
+// describes the different react classes to render the keyboard
+
+var React = require('react');
+
+// keyboard class which has 3 octives
+// it takes in an object, with first, second, and third attributes
 var Keyboard = React.createClass({
   render: function() {
     return (
@@ -11,6 +19,10 @@ var Keyboard = React.createClass({
   }
 });
 
+// a single octive, really an svg
+// it contains all the white keys and black keys,
+// and highlights keys from the selected props (from Keyboard).
+// keys are highlighted using the keyboard.css class "selected"
 var Octive = React.createClass({
   render: function() {
     var white_key_width = 15;
@@ -40,6 +52,7 @@ var Octive = React.createClass({
   }
 })
 
+// A single white key, really an svg-rectangle
 var WhiteKey = React.createClass({
   render: function() {
     var classname = "white-key "+this.props.note+this.props.number;
@@ -52,6 +65,7 @@ var WhiteKey = React.createClass({
       note_position = this.props.note.charCodeAt() - 67;
     }
     else {
+      // for notes [A, C)
       note_position = this.props.note.charCodeAt()+7 - 67;
     }
     var position = width * (note_position);
@@ -61,6 +75,7 @@ var WhiteKey = React.createClass({
   }
 });
 
+// A single black key, really an svg-rectangle
 var BlackKey = React.createClass({
   render: function() {
     var white_key_width = 15;
@@ -74,6 +89,7 @@ var BlackKey = React.createClass({
       note_position = this.props.note.charCodeAt() - 67;
     }
     else {
+      // for notes [A, C)
       note_position = this.props.note.charCodeAt()+7 - 67;
     }
     var position = white_key_width * (note_position) + 11;
@@ -82,3 +98,5 @@ var BlackKey = React.createClass({
     )
   }
 });
+
+module.exports = Keyboard;

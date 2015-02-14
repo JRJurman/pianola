@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/cosmo/bootstrap.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.11.2/js/standalone/selectize.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.11.2/css/selectize.default.min.css">
-    <script src="build/react.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.0/css/selectize.default.min.css">
     <link rel="stylesheet" href="css/keyboard.css">
     <link rel="stylesheet" href="css/custom.css">
 
@@ -20,27 +18,8 @@
 
   <body>
 
-    <div id="chord-error" class="alert alert-danger" style="display:none">
-      <strong>Sorry</strong>, but it looks like one of the chords you
-      entered <strong>hasn't been filled in, or doesn't exist</strong>.
-    </div>
+    <div id="main"></div>
 
-    <h1 class="title">Pianola</h1>
-    <small><a href="https://github.com/JRJurman/pianola">Created By Jesse Jurman</a></small>
-    <div id="input-tags-div"></div>
-    <div id="spacer"></div>
-    <div id="keyboard-div">
-      <table id="keyboard-table">
-      </table>
-    </div>
-
-    <script src="build/selectChords.js"></script>
-    <script src="build/dropdownerizer.js"></script>
-    <script src="build/keyboarderizer.js"></script>
-    <script src="build/select-events.js"></script>
-    <script src="build/selecterizer.js"></script>
-    <script src="build/chordmap.js"></script>
-    <script src="build/keyboard.js"></script>
-
+    <script src="js/main.js"></script>
   </body>
 </html>
