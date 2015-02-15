@@ -3,6 +3,8 @@
 // react class that renders the selectize input
 
 var React = require('react');
+//var jquery = require('jquery');
+var Selectize = require('selectize');
 var keyboarderizer = require('./keyboarderizer');
 var popDropdown = require('./popDropdown');
 var chordMap = require('./chordMap');
@@ -11,7 +13,7 @@ var SelectChords = React.createClass({
   render: function() {
     var placeholder = "Click here, and type in a chord..."
     return (
-      <select id="input-tags" ref="selectize" multiple placeholder={placeholder}>
+      <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
       </select>
     );
   },
@@ -28,7 +30,7 @@ var SelectChords = React.createClass({
       return {tonic:chordMap[e].tonic, chord:e}
     });
 
-    var select = $(this.refs.selectize.getDOMNode()).selectize({
+    var select = $(this.refs.chordinput.getDOMNode()).selectize({
       delimiter: ',',
       persist: false,
       maxOptions: 5,
