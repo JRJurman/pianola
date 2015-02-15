@@ -20,24 +20,22 @@ var keyboarderizer = function() {
     var new_keyboard;
     var tableRow;
 
-    // if the view is greater than 700px, show 2 columns in a table
-    // otherwise throw keyboad objects in their own divs
-    if (window.innerWidth >= 700) {
-      if ( (index % 2) == 0 ) {
-        tableRow = document.createElement('tr');
-        keyboardTable.appendChild(tableRow);
-      }
-      else {
-        var tableRows = document.querySelectorAll('tr');
-        tableRow = tableRows[tableRows.length - 1];
-      }
-
-      new_keyboard = document.createElement('td');
+    // if the view is less than 700px, show only 1 column in a table
+    // otherwise throw every other keyboard to the right
+    if ( ((index % 2) == 0) || window.innerWidth < 700) {
+      tableRow = document.createElement('tr');
+      keyboardTable.appendChild(tableRow);
     }
     else {
-      tableRow = document.getElementById("keyboard-div");
-      new_keyboard = document.createElement('div');
+      var tableRows = document.querySelectorAll('tr');
+      tableRow = tableRows[tableRows.length - 1];
     }
+
+    new_keyboard = document.createElement('td');
+    // else {
+    //   tableRow = document.getElementById("keyboard-div");
+    //   new_keyboard = document.createElement('div');
+    // }
 
     var new_key_id = 'keyboard-td-'+index;
     new_keyboard.setAttribute('id', new_key_id );

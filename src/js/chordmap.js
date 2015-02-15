@@ -2,10 +2,13 @@
 // created By Jesse Jurman
 // this file is made to store all the chords, and their fingerings
 
+var chordTruths = require('./chordTruths');
+
 var chordMap = {};
 
+var base_keyset = chordTruths.base_keyset;
+
 // keys, as they are understood by the Keyboard class
-var base_keyset = ["Cn", "C#", "Dn", "D#", "En", "Fn", "F#", "Gn", "G#", "An", "A#", "Bn"]
 var keyset = [base_keyset, base_keyset, base_keyset].join(",").split(",");
 
 // Give us a base index (if flat "b", choose the sharp of the previous chord)
@@ -42,26 +45,12 @@ var getFingering = function(note, steps) {
   return octiveSet;
 };
 
-// every key, for which each of the chords can be applied
-// e.g. "C" major, "C#" major, "Db" major, etc...
-var keys = ["C", "C#", "Db", "D", "D#", "Eb",
- "E", "F", "F#", "Gb", "G", "G#", "Ab",
- "A", "A#", "Bb", "B"];
-
-keys.forEach( function(e) {
-  chordMap[e+" major"] = {tonic:e, value: getFingering(e, [0, 4, 7]) };
-  chordMap[e+" minor"] = {tonic:e, value: getFingering(e, [0, 3, 7]) };
-  chordMap[e+" 7"] = {tonic:e, value: getFingering(e, [0, 4, 7, 10]) };
-  chordMap[e+" m7"] = {tonic:e, value: getFingering(e, [0, 3, 7, 10]) };
-  chordMap[e+" maj7"] = {tonic:e, value: getFingering(e, [0, 4, 7, 11]) };
-  chordMap[e+" mM7"] = {tonic:e, value: getFingering(e, [0, 3, 7, 11]) };
-  chordMap[e+" 7b5"] = {tonic:e, value: getFingering(e, [0, 4, 6, 10]) };
-  chordMap[e+" 7#5"] = {tonic:e, value: getFingering(e, [0, 4, 8, 10]) };
-  chordMap[e+" 7b9"] = {tonic:e, value: getFingering(e, [0, 4, 7, 10, 13]) };
-  chordMap[e+" 7#9"] = {tonic:e, value: getFingering(e, [0, 4, 7, 10, 15]) };
-  chordMap[e+" b5"] = {tonic:e, value: getFingering(e, [0, 4, 6]) };
-  chordMap[e+" 5"] = {tonic:e, value: getFingering(e, [0, 7, 12]) };
-  chordMap[e+" dim"] = {tonic:e, value: getFingering(e, [0, 3, 6]) };
+chordTruths.keys.forEach( function(key) {
+  chordTruths.chords.forEach( function(chord) {
+    chordMap[key+" "+chord] = {
+      tonic:key, value: getFingering(key, chordTruths.chordSteps[chord])
+    };
+  });
 });
 
 module.exports = chordMap;
