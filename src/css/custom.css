@@ -12,6 +12,10 @@ h1.title {
   font-size: 50px;
 }
 
+.no-break {
+  page-break-inside: avoid;
+}
+
 a {
   color: #FFA61C;
 }

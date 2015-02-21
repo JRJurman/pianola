@@ -9,7 +9,7 @@ var React = require('react');
 var Keyboard = React.createClass({
   render: function() {
     return (
-      <div>
+      <div className="no-break">
         <h3>{this.props.chord}</h3>
         <Octive number="0" selected={this.props.first} />
         <Octive number="1" selected={this.props.second} />

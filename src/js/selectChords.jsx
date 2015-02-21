@@ -73,9 +73,10 @@ var DefaultChords = React.createClass({
 var Chord = React.createClass({
   render: function() {
     var tonic = this.props.tonic;
-    var chord = tonic + " " + this.props.chord;
+    var chord = tonic + "" + this.props.chord;
+    var chordSp = tonic + " " + this.props.chord;
     return (
-      <option value={chord}>{chord}</option>
+      <option value={chordSp}>{chord}</option>
     );
   }
 });

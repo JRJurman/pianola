@@ -32,10 +32,6 @@ var keyboarderizer = function() {
     }
 
     new_keyboard = document.createElement('td');
-    // else {
-    //   tableRow = document.getElementById("keyboard-div");
-    //   new_keyboard = document.createElement('div');
-    // }
 
     var new_key_id = 'keyboard-td-'+index;
     new_keyboard.setAttribute('id', new_key_id );
