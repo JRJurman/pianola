@@ -61,7 +61,7 @@ var DefaultChords = React.createClass({
     var chordArray = [];
     chordTruths.chords.forEach( function(c) {
       chordArray.push(<Chord key={c} tonic={tonic} chord={c} />);
-    })
+    });
     return (
       <optgroup label={tonic}>
         {chordArray}
