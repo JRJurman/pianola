@@ -18,3 +18,10 @@ rect.white-key.selected {
 rect.black-key.selected {
   fill:rgb(255,117,24);
 }
+
+/* one day, it might be useful to highlight middle-c
+rect.white-key.C1 {
+  stroke-width:2;
+  stroke:rgb(255,75,24);
+}
+*/
