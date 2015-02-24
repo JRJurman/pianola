@@ -1,4 +1,4 @@
-body {
+div#main {
   margin-top: 2.5%;
   margin-left: 5%;
   margin-right: 5%;
@@ -9,7 +9,11 @@ table {
 }
 
 h1.title {
-  font-size: 50px;
+  font-size: 3.5em;
+}
+
+i.fa-circle {
+  font-size: 0.5em;
 }
 
 .no-break {
