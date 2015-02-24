@@ -39,9 +39,11 @@ var keyboarderizer = function() {
     var chordItem = chordMap[chord];
 
     React.render(
-      <Keyboard chord={chord} first={chordItem.value.first}
-                              second={chordItem.value.second}
-                              third={chordItem.value.third} />,
+      <Keyboard
+        chord={chord}
+        voicing={0}
+        value={chordItem.value}
+      />,
       document.getElementById(new_key_id)
     );
 

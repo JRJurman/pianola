@@ -26,31 +26,42 @@ var getIndex = function(note) {
 
 // Get fingering for each of the octives, that will be rendered in Keyboard
 var getFingering = function(note, steps) {
-  var octiveSet = {first: "", second: "", third: ""};
+  var octiveSet = ["", "", ""]
   var components = [];
   steps.forEach( function(e) {
     components.push(getIndex(note) + e);
   });
   components.forEach( function(element) {
     if (element < base_keyset.length) {
-      octiveSet.first += keyset[element] + " ";
+      octiveSet[0] += keyset[element] + " ";
     }
     else if (element < base_keyset.length*2) {
-      octiveSet.second += keyset[element] + " ";
+      octiveSet[1] += keyset[element] + " ";
     }
     else {
-      octiveSet.third += keyset[element] + " ";
+      octiveSet[2] += keyset[element] + " ";
     }
   });
   return octiveSet;
 };
 
+// for every key, add all the chords to the chordMap
 chordTruths.keys.forEach( function(key) {
+
+  // the generic chords
   chordTruths.chords.forEach( function(chord) {
+    var fings = [];
+
+    // for all the step variations, add to fings the fingerings
+    chordTruths.chordSteps[chord].forEach( function(stepsCombo) {
+      fings.push( getFingering(key, stepsCombo ).join(";") );
+    });
+
     chordMap[key+" "+chord] = {
-      tonic:key, value: getFingering(key, chordTruths.chordSteps[chord])
+      tonic:key, value: fings.join("|")
     };
   });
+
 });
 
 module.exports = chordMap;

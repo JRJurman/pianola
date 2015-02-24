@@ -8,12 +8,26 @@ var React = require('react');
 // it takes in an object, with first, second, and third attributes
 var Keyboard = React.createClass({
   render: function() {
+    // figure out what voicing we're playing
+    var voicing = this.props.voicing;
+    var voices = this.props.value.split("|");
+
+    var fingering = voices[voicing].split(";");
+    var first = fingering[0];
+    var second = fingering[1];
+    var third = fingering[2];
+
+    var voiceDots = [];
+    voices.forEach( function(value, index) {
+      voiceDots.push( <i className="fa fa-circle" /> )
+    })
+
     return (
       <div className="no-break">
-        <h3>{this.props.chord}</h3>
-        <Octive number="0" selected={this.props.first} />
-        <Octive number="1" selected={this.props.second} />
-        <Octive number="2" selected={this.props.third} />
+        <h3>{this.props.chord} {voiceDots} </h3>
+        <Octive number="0" selected={first} />
+        <Octive number="1" selected={second} />
+        <Octive number="2" selected={third} />
       </div>
     );
   }

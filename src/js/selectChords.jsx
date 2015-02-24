@@ -6,7 +6,6 @@ var React = require('react');
 var keyboarderizer = require('./keyboarderizer');
 var popDropdown = require('./popDropdown');
 var chordTruths = require('./chordTruths');
-var chordMap = require('./chordMap');
 
 var SelectChords = React.createClass({
   render: function() {
@@ -23,7 +22,6 @@ var SelectChords = React.createClass({
 
     var select = $(this.refs.chordinput.getDOMNode()).selectize({
       delimiter: ',',
-      persist: false,
       maxOptions: 5,
       onChange: function() {
         keyboarderizer();
