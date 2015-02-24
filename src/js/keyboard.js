@@ -19,7 +19,8 @@ var Keyboard = React.createClass({
 
     var voiceDots = [];
     voices.forEach( function(value, index) {
-      voiceDots.push( <i className="fa fa-circle" /> )
+      var vTrue = voicing==index ? "selected" : "";
+      voiceDots.push( <VoicingDot selected={vTrue} voicing={index} /> );
     })
 
     return (
@@ -30,6 +31,29 @@ var Keyboard = React.createClass({
         <Octive number="2" selected={third} />
       </div>
     );
+  }
+});
+
+var VoicingDot = React.createClass({
+  render: function() {
+    var words = [ "first", "second", "third", "fourth",
+                  "fifth", "sixth", "seventh", "eighth"];
+    var text = words[this.props.voicing] + " voicing";
+    var classText = "fa fa-circle " + this.props.selected;
+    return (
+      <i
+        className={classText}
+        key={this.props.voicing}
+        ref="voicinginput"
+        data-toggle="tooltip"
+        data-placement="top"
+        title=""
+        data-original-title={text}
+      />
+    );
+  },
+  componentDidMount: function() {
+    $(this.refs.voicinginput.getDOMNode()).tooltip();
   }
 });
 
