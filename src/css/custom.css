@@ -31,7 +31,7 @@ i.fa {
   color: rgb(255,200,117);
   vertical-align: middle;
   padding-bottom: 5px;
-  padding-left: 0.8em;
+  margin-left: 0.8em;
 }
 
 i.fa.selected {
