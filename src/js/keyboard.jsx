@@ -24,7 +24,7 @@ var Keyboard = React.createClass({
     var third = fingering[2];
 
     var voiceDots = voices.map( (value, index) => {
-      var vTrue = voicing==index ? "selected" : "";
+      var vTrue = voicing==index ? "fa-circle selected" : "fa-circle-o";
       return ( <VoicingDot  key={index}
                             click={this.handleClick}
                             selected={vTrue}
@@ -34,7 +34,9 @@ var Keyboard = React.createClass({
 
     return (
       <div className="no-break">
-        <h3>{this.props.chord} <span> {voiceDots} </span> </h3>
+        <div className="chord-header">
+          <h3>{this.props.chord} <span className="dots"> {voiceDots} </span> </h3>
+        </div>
         <Octive number="0" selected={first} />
         <Octive number="1" selected={second} />
         <Octive number="2" selected={third} />
@@ -51,7 +53,7 @@ var VoicingDot = React.createClass({
     var words = [ "first", "second", "third", "fourth",
                   "fifth", "sixth", "seventh", "eighth"];
     var text = words[this.props.voicing] + " voicing";
-    var classText = "fa fa-circle " + this.props.selected;
+    var classText = "fa " + this.props.selected;
     return (
       <i
         className={classText}
@@ -60,8 +62,7 @@ var VoicingDot = React.createClass({
         data-placement="top"
         onClick={this.onClick}
         title=""
-        data-original-title={text}
-      />
+        data-original-title={text} />
     );
   },
   componentDidMount: function() {

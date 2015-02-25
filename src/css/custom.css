@@ -12,24 +12,33 @@ td {
   width: 350px;
 }
 
+div.chord-header {
+  width: 315px;
+}
+
+span.dots {
+  float: right;
+}
+
 h1.title {
   font-size: 3.5em;
 }
 
-i.fa-circle {
-  font-size: 0.5em;
+i.fa {
+  font-size: 0.8em;
   cursor: pointer;
   cursor: hand;
   color: rgb(255,200,117);
   vertical-align: middle;
   padding-bottom: 5px;
+  padding-left: 0.8em;
 }
 
-i.fa-circle.selected {
+i.fa.selected {
   color: rgb(255,163,24);
 }
 
-i.fa-circle:hover {
+i.fa:hover {
   color: rgb(255,163,24);
 }
 
