@@ -3,7 +3,7 @@
 // react class that renders the selectize input
 
 var React = require('react');
-var keyboarderizer = require('./keyboarderizer');
+var Keyboarder = require('./Keyboarder');
 var popDropdown = require('./popDropdown');
 var chordTruths = require('./chordTruths');
 
@@ -20,11 +20,12 @@ var SelectChords = React.createClass({
   // when it mounts, add all the selectize attributes
   componentDidMount: function() {
 
+    var updater = this.props.update;
     var select = $(this.refs.chordinput.getDOMNode()).selectize({
       delimiter: ',',
       maxOptions: 5,
       onChange: function() {
-        keyboarderizer();
+        updater(this.items);
         popDropdown();
       },
       onDropdownOpen: function() {
@@ -41,9 +42,8 @@ var SelectChords = React.createClass({
 
 var ChordGroups = React.createClass({
   render: function() {
-    var groupArray = [];
-    chordTruths.keys.forEach( function(k) {
-      groupArray.push(<DefaultChords key={k} tonic={k} />);
+    var groupArray = chordTruths.keys.map( function(k) {
+      return (<DefaultChords key={k} tonic={k} />);
     });
     return (
       <div>
@@ -56,9 +56,8 @@ var ChordGroups = React.createClass({
 var DefaultChords = React.createClass({
   render: function() {
     var tonic = this.props.tonic;
-    var chordArray = [];
-    chordTruths.chords.forEach( function(c) {
-      chordArray.push(<Chord key={c} tonic={tonic} chord={c} />);
+    var chordArray = chordTruths.chords.map( function(c) {
+      return (<Chord key={c} tonic={tonic} chord={c} />);
     });
     return (
       <optgroup label={tonic}>

@@ -8,6 +8,10 @@ table {
   width: 700px;
 }
 
+td {
+  width: 350px;
+}
+
 h1.title {
   font-size: 3.5em;
 }

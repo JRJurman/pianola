@@ -4,19 +4,23 @@
 
 var React = require('react');
 var SelectChords = require('./SelectChords');
+var Keyboarder = require('./Keyboarder');
 
 var Pianola = React.createClass({
+  getInitialState: function() {
+    return {chords: []};
+  },
+  updateChords: function(items) {
+    this.setState( {chords: items})
+  },
   render: function() {
     return (
       <div>
         <h1 className="title">Pianola</h1>
         <small><a href="https://github.com/JRJurman/pianola">Created By Jesse Jurman</a></small>
-        <SelectChords id="input-tags-div" />
+        <SelectChords id="input-tags-div" update={this.updateChords}/>
         <div id="spacer"></div>
-        <div id="keyboard-div">
-          <table id="keyboard-table">
-          </table>
-        </div>
+        <Keyboarder chords={this.state.chords}/>
       </div>
     );
   }

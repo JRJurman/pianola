@@ -1,4 +1,4 @@
-// keyboard.js
+// keyboard.jsx
 // created By Jesse Jurman
 // describes the different react classes to render the keyboard
 
@@ -7,9 +7,15 @@ var React = require('react');
 // keyboard class which has 3 octives
 // it takes in an object, with first, second, and third attributes
 var Keyboard = React.createClass({
+  getInitialState: function() {
+    return {voice: this.props.voicing};
+  },
+  handleClick: function(voicing) {
+    this.setState( {voice: voicing} );
+  },
   render: function() {
     // figure out what voicing we're playing
-    var voicing = this.props.voicing;
+    var voicing = this.state.voice;
     var voices = this.props.value.split("|");
 
     var fingering = voices[voicing].split(";");
@@ -17,15 +23,18 @@ var Keyboard = React.createClass({
     var second = fingering[1];
     var third = fingering[2];
 
-    var voiceDots = [];
-    voices.forEach( function(value, index) {
+    var voiceDots = voices.map( (value, index) => {
       var vTrue = voicing==index ? "selected" : "";
-      voiceDots.push( <VoicingDot selected={vTrue} voicing={index} /> );
-    })
+      return ( <VoicingDot  key={index}
+                            click={this.handleClick}
+                            selected={vTrue}
+                            voicing={index} />
+      );
+    });
 
     return (
       <div className="no-break">
-        <h3>{this.props.chord} {voiceDots} </h3>
+        <h3>{this.props.chord} <span> {voiceDots} </span> </h3>
         <Octive number="0" selected={first} />
         <Octive number="1" selected={second} />
         <Octive number="2" selected={third} />
@@ -35,6 +44,9 @@ var Keyboard = React.createClass({
 });
 
 var VoicingDot = React.createClass({
+  onClick: function() {
+    this.props.click(this.props.voicing);
+  },
   render: function() {
     var words = [ "first", "second", "third", "fourth",
                   "fifth", "sixth", "seventh", "eighth"];
@@ -43,10 +55,10 @@ var VoicingDot = React.createClass({
     return (
       <i
         className={classText}
-        key={this.props.voicing}
         ref="voicinginput"
         data-toggle="tooltip"
         data-placement="top"
+        onClick={this.onClick}
         title=""
         data-original-title={text}
       />
