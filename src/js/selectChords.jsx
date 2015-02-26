@@ -4,35 +4,49 @@
 
 var React = require('react');
 var Keyboarder = require('./Keyboarder');
-var popDropdown = require('./popDropdown');
 var chordTruths = require('./chordTruths');
 
 var SelectChords = React.createClass({
+  getInitialState: function() {
+    return {spacer: {}};
+  },
+
   render: function() {
     var placeholder = "Click here, and type in a chord...";
     return (
-      <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
-        <ChordGroups />
-      </select>
+      <div>
+        <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
+          <ChordGroups />
+        </select>
+        <div id="spacer" style={this.state.spacer}></div>
+      </div>
     );
+  },
+
+  popDropDown: function() {
+    // grab the hieght of the dropdown
+    var dropbox = document.querySelector(".selectize-dropdown-content");
+    var newHeight = dropbox.getBoundingClientRect().height;
+
+    this.setState({spacer: {marginTop:`${newHeight}px`}});
   },
 
   // when it mounts, add all the selectize attributes
   componentDidMount: function() {
-
+    var self = this;
     var updater = this.props.update;
     var select = $(this.refs.chordinput.getDOMNode()).selectize({
       delimiter: ',',
       maxOptions: 5,
       onChange: function() {
         updater(this.items);
-        popDropdown();
+        self.popDropDown();
       },
       onDropdownOpen: function() {
-        popDropdown();
+        self.popDropDown();
       },
       onDropdownClose: function() {
-        popDropdown();
+        self.popDropDown();
       },
 
     });
