@@ -10,15 +10,13 @@ http://jrjurman.com/pianola/
 ## Development
 
 1. `npm install`
-2. `bower install`
-3. `gulp`
+2. `gulp`
 
 `gulp` will launch the site on localhost:8000, and update on changes  
 
 ## Deployment
 
 1. `npm install`
-2. `bower install`
-3. `gulp deploy`
+2. `gulp deploy`
 
 You can see other gulp commands in the gulpfile.js
