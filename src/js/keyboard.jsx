@@ -23,6 +23,7 @@ var Keyboard = React.createClass({
     var second = fingering[1];
     var third = fingering[2];
 
+    // render the different voicedots possible for this chord
     var voiceDots = voices.map( (value, index) => {
       var vTrue = voicing==index ? "fa-circle selected" : "fa-circle-o";
       return ( <VoicingDot  key={index}
@@ -33,7 +34,7 @@ var Keyboard = React.createClass({
     });
 
     return (
-      <div className="no-break">
+      <div className="no-break col-md-6">
         <div className="chord-header">
           <h3>{this.props.chord} <span className="dots"> {voiceDots} </span> </h3>
         </div>
@@ -45,13 +46,15 @@ var Keyboard = React.createClass({
   }
 });
 
+// A voicing dot, which allows the user to change the voicing of the chord
 var VoicingDot = React.createClass({
   onClick: function() {
     this.props.click(this.props.voicing);
   },
   render: function() {
     var words = [ "first", "second", "third", "fourth",
-                  "fifth", "sixth", "seventh", "eighth"];
+                  "fifth", "sixth", "seventh", "eighth",
+                  "ninth", "tenth", "eleventh", "twelfth"];
     var text = words[this.props.voicing] + " voicing";
     var classText = "fa " + this.props.selected;
     return (
