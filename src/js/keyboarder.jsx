@@ -24,7 +24,7 @@ var Keyboarder = React.createClass({
       return list;
     }, []);
 
-    var keyboards = pairChords.map( function(chordPair) {
+    var keyboards = pairChords.map( function(chordPair, rowIndex) {
 
         // dispKeyboards is one or two keyboards...
         var dispKeyboards = chordPair.map( function(chord) {
@@ -37,7 +37,7 @@ var Keyboarder = React.createClass({
 
         // we pack them into rows for the bootstrap grid system
         return (
-          <div className="row">
+          <div className="row" key={rowIndex}>
               {dispKeyboards}
           </div>
         );

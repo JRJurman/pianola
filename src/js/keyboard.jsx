@@ -34,7 +34,7 @@ var Keyboard = React.createClass({
     });
 
     return (
-      <div className="no-break col-md-6">
+      <div className="no-break col-xs-6">
         <div className="chord-header">
           <h3>{this.props.chord} <span className="dots"> {voiceDots} </span> </h3>
         </div>
