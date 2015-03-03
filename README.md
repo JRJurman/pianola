@@ -9,6 +9,8 @@ http://jrjurman.com/pianola/
 
 ## Development
 
+Make sure you have gulp installed (you can install it globally using `npm install -g gulp`)
+
 1. `npm install`
 2. `gulp`
 
