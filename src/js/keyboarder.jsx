@@ -43,7 +43,7 @@ var Keyboarder = React.createClass({
         );
     });
     return (
-      <div>
+      <div className="container">
         {keyboards}
       </div>
     );

@@ -33,14 +33,19 @@ var Keyboard = React.createClass({
       );
     });
 
+    var white_key_width = 15;
+    var octive_width = white_key_width*7;
+    var keyboard_width = octive_width*3;
     return (
-      <div className="no-break col-xs-6">
+      <div className="no-break col-sm-6">
         <div className="chord-header">
           <h3>{this.props.chord} <span className="dots"> {voiceDots} </span> </h3>
         </div>
-        <Octive number="0" selected={first} />
-        <Octive number="1" selected={second} />
-        <Octive number="2" selected={third} />
+        <svg width="100%" viewBox={"0 0 "+keyboard_width+" 50"}>
+          <Octive number="0" selected={first} />
+          <Octive number="1" selected={second} />
+          <Octive number="2" selected={third} />
+        </svg>
       </div>
     );
   }
@@ -87,7 +92,7 @@ var Octive = React.createClass({
       return selected_notes.indexOf(note) != -1;
     }
     return (
-      <svg width={width} height="50">
+      <g transform={"translate("+ width*number +",0)"}>
         <WhiteKey note="C" number={number} selected={selected("Cn")} />
         <WhiteKey note="D" number={number} selected={selected("Dn")} />
         <WhiteKey note="E" number={number} selected={selected("En")} />
@@ -101,7 +106,7 @@ var Octive = React.createClass({
         <BlackKey note="F" number={number} selected={selected("F#")} />
         <BlackKey note="G" number={number} selected={selected("G#")} />
         <BlackKey note="A" number={number} selected={selected("A#")} />
-      </svg>
+      </g>
     );
   }
 })

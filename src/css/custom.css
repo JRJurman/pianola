@@ -2,20 +2,6 @@ div#main {
   margin-top: 2.5%;
 }
 
-/*
-.row {
-  width: 700px;
-}
-
-td {
-  width: 350px;
-}
-*/
-
-div.chord-header {
-  width: 315px;
-}
-
 span.dots {
   float: right;
 }
