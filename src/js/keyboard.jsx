@@ -36,9 +36,11 @@ var Keyboard = React.createClass({
     var white_key_width = 15;
     var octive_width = white_key_width*7;
     var keyboard_width = octive_width*3;
+
     // the viewBox is a list of min-width, min-height, width, and height
     // we use this to properly scale our keyboards out to the correct size
     var viewBox_value = "0 0 "+keyboard_width+" 50"
+
     return (
       <div className="no-break col-sm-6">
         <div className="chord-header">
