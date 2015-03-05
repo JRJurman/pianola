@@ -56,9 +56,14 @@ var SelectChords = React.createClass({
               legends.push(" " + abbrv + ' <i class="fa fa-long-arrow-right"></i> ' + chordTruths.abbrv[abbrv]);
             };
           });
+          var legendTags = "";
+          if (legends.length > 0) {
+            legendTags = '<li class="abbrv">' + legends.join('</li> <li class="abbrv">') + '</li>';
+          };
+          console.log(legendTags);
           return '<ul class="breadcrumb">' +
                     '<li class="active">' + escape(data["value"]) + '</li>' +
-                    '<li class="abbrv">' + legends.join('</li> <li class="abbrv">') + '</li>' +
+                     legendTags +
                  '</ul>';
 				}
 			}
