@@ -36,16 +36,21 @@ var Keyboard = React.createClass({
     var white_key_width = 15;
     var octive_width = white_key_width*7;
     var keyboard_width = octive_width*3;
+    // the viewBox is a list of min-width, min-height, width, and height
+    // we use this to properly scale our keyboards out to the correct size
+    var viewBox_value = "0 0 "+keyboard_width+" 50"
     return (
       <div className="no-break col-sm-6">
         <div className="chord-header">
           <h3>{this.props.chord} <span className="dots"> {voiceDots} </span> </h3>
         </div>
-        <svg width="100%" viewBox={"0 0 "+keyboard_width+" 50"}>
-          <Octive number="0" selected={first} />
-          <Octive number="1" selected={second} />
-          <Octive number="2" selected={third} />
-        </svg>
+        <div className="svg-divbox">
+          <svg className="svg-keyboard" viewBox={viewBox_value}>
+            <Octive number="0" selected={first} />
+            <Octive number="1" selected={second} />
+            <Octive number="2" selected={third} />
+          </svg>
+        </div>
       </div>
     );
   }
