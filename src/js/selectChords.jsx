@@ -48,7 +48,20 @@ var SelectChords = React.createClass({
       onDropdownClose: function() {
         self.popDropDown();
       },
-
+      render: {
+				option: function(data, escape) {
+          var legends = [];
+          Object.keys(chordTruths.abbrv).forEach( function(abbrv) {
+            if (data["value"].indexOf(abbrv) !== -1) {
+              legends.push(" " + abbrv + ' <i class="fa fa-long-arrow-right"></i> ' + chordTruths.abbrv[abbrv]);
+            };
+          });
+          return '<ul class="breadcrumb">' +
+                    '<li class="active">' + escape(data["value"]) + '</li>' +
+                    '<li class="abbrv">' + legends.join('</li> <li class="abbrv">') + '</li>' +
+                 '</ul>';
+				}
+			}
     });
 
   }
@@ -84,8 +97,8 @@ var DefaultChords = React.createClass({
 var Chord = React.createClass({
   render: function() {
     var tonic = this.props.tonic;
-    var chord = tonic + "" + this.props.chord;
-    var chordSp = tonic + " " + this.props.chord;
+    var chord = tonic + this.props.chord;
+    var chordSp = tonic + this.props.chord;
     return (
       <option value={chordSp}>{chord}</option>
     );

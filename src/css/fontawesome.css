@@ -1,0 +1,17 @@
+i.fa-circle, i.fa-circle-o {
+  font-size: 0.8em;
+  cursor: pointer;
+  cursor: hand;
+  color: rgb(255,200,117);
+  vertical-align: middle;
+  padding-bottom: 5px;
+  margin-left: 0.8em;
+}
+
+i.fa-circle.selected, i.fa-circle-o.selected {
+  color: rgb(255,163,24);
+}
+
+i.fa-circle:hover, i.fa-circle-o:hover {
+  color: rgb(255,163,24);
+}

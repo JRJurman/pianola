@@ -10,6 +10,15 @@ h1.title {
   font-size: 3.5em;
 }
 
+.abbrv {
+  font-style: italic;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  margin-bottom: 0px;
+}
+
 /* the following svg code varies from tympanus.net which includes
    a most useful tutorial on making responsive SVGs (for most browsers)..
    http://tympanus.net/Tutorials/ResponsiveSVGs/index3.html
@@ -30,25 +39,6 @@ svg.svg-keyboard {
   height: 100%;
   border: none;
 }
-
-i.fa {
-  font-size: 0.8em;
-  cursor: pointer;
-  cursor: hand;
-  color: rgb(255,200,117);
-  vertical-align: middle;
-  padding-bottom: 5px;
-  margin-left: 0.8em;
-}
-
-i.fa.selected {
-  color: rgb(255,163,24);
-}
-
-i.fa:hover {
-  color: rgb(255,163,24);
-}
-
 .no-break {
   page-break-inside: avoid;
 }

@@ -29,7 +29,13 @@ var getFingering = function(note, steps) {
   var octiveSet = ["", "", ""]
   var components = [];
   steps.forEach( function(e) {
-    components.push(getIndex(note) + e);
+    // if we get a note (exclusively for the base)
+    if (isNaN(e)) {
+      components.push(getIndex(e) - 12);
+    }
+    else {
+      components.push(getIndex(note) + e);
+    }
   });
   components.forEach( function(element) {
     if (element < base_keyset.length) {
@@ -57,7 +63,7 @@ chordTruths.keys.forEach( function(key) {
       fings.push( getFingering(key, stepsCombo ).join(";") );
     });
 
-    chordMap[key+" "+chord] = {
+    chordMap[key+chord] = {
       tonic:key, value: fings.join("|")
     };
   });
