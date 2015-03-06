@@ -12,7 +12,7 @@ var SelectChords = React.createClass({
   },
 
   render: function() {
-    var placeholder = "Click here, and type in a chord...";
+    var placeholder = "Click here, and type in your chords!";
     return (
       <div>
         <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
@@ -35,39 +35,48 @@ var SelectChords = React.createClass({
   componentDidMount: function() {
     var self = this;
     var updater = this.props.update;
+
+    /* Selectize options and events */
     var select = $(this.refs.chordinput.getDOMNode()).selectize({
-      delimiter: ',',
-      maxOptions: 5,
-      onChange: function() {
-        updater(this.items);
-        self.popDropDown();
-      },
-      onDropdownOpen: function() {
-        self.popDropDown();
-      },
-      onDropdownClose: function() {
-        self.popDropDown();
-      },
-      render: {
-				option: function(data, escape) {
-          var legends = [];
-          Object.keys(chordTruths.abbrv).forEach( function(abbrv) {
-            if (data["value"].indexOf(abbrv) !== -1) {
-              legends.push(" " + abbrv + ' <i class="fa fa-long-arrow-right"></i> ' + chordTruths.abbrv[abbrv]);
+        delimiter: ',',
+        maxOptions: 5,
+        dataAttr: 'legends',
+        onChange: function() {
+          updater(this.items);
+          self.popDropDown();
+        },
+        onDropdownOpen: function() {
+          self.popDropDown();
+        },
+        onDropdownClose: function() {
+          self.popDropDown();
+        },
+        searchField: ["text"],
+        render: {
+          optgroup_header: function(data, escape) {
+      			return '<div class="optgroup-header"><h4 class="groups">' + escape(data["value"]) + ' Chords:</h3></div>';
+      		},
+          option: function(data, escape) {
+            var legends = [];
+            Object.keys(chordTruths.abbrv).forEach( function(abbrv) {
+              if (data["value"].indexOf(abbrv) !== -1) {
+                legends.push(" " + abbrv + ' <i class="fa fa-long-arrow-right"></i> ' + chordTruths.abbrv[abbrv]);
+              };
+            });
+            var legendTags = "";
+            if (legends.length > 0) {
+              legendTags = '<li class="abbrv">' + legends.join('</li> <li class="abbrv">') + '</li>';
             };
-          });
-          var legendTags = "";
-          if (legends.length > 0) {
-            legendTags = '<li class="abbrv">' + legends.join('</li> <li class="abbrv">') + '</li>';
-          };
-          console.log(legendTags);
-          return '<ul class="breadcrumb">' +
-                    '<li class="active">' + escape(data["value"]) + '</li>' +
-                     legendTags +
-                 '</ul>';
-				}
-			}
-    });
+            return '<ul class="breadcrumb">' +
+                      '<li class="active">' + escape(data["value"]) + '</li>' +
+                       legendTags +
+                   '</ul>';
+          }
+        }
+      }
+      /* end selectize stuff */
+
+    );
 
   }
 });
@@ -103,9 +112,18 @@ var Chord = React.createClass({
   render: function() {
     var tonic = this.props.tonic;
     var chord = tonic + this.props.chord;
-    var chordSp = tonic + this.props.chord;
+
+    // we're treating the text value as anything that could be searched
+    var text = chord+' ';
+
+    Object.keys(chordTruths.abbrv).forEach( function(abbrv) {
+      if (chord.indexOf(abbrv) !== -1) {
+        text += tonic+chordTruths.abbrv[abbrv] + " ";
+      };
+    });
+
     return (
-      <option value={chordSp}>{chord}</option>
+      <option value={chord}>{text}</option>
     );
   }
 });
