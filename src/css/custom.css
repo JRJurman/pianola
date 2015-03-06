@@ -10,6 +10,12 @@ h1.title {
   font-size: 3.5em;
 }
 
+h4.groups {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: 400;
+}
+
 div.chord-header {
   margin-left: 2.5%;
   margin-right: 2.5%;
