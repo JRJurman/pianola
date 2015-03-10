@@ -30,6 +30,22 @@ div.chord-header {
   margin-bottom: 0px;
 }
 
+.container {
+  padding-bottom: 15px;
+}
+
+.no-break {
+  page-break-inside: avoid;
+}
+
+a {
+  color: #FFA61C;
+}
+
+a:hover {
+  color: #ff7518;
+}
+
 /* the following svg code varies from tympanus.net which includes
    a most useful tutorial on making responsive SVGs (for most browsers)..
    http://tympanus.net/Tutorials/ResponsiveSVGs/index3.html
@@ -49,15 +65,4 @@ svg.svg-keyboard {
   width: 100%;
   height: 100%;
   border: none;
-}
-.no-break {
-  page-break-inside: avoid;
-}
-
-a {
-  color: #FFA61C;
-}
-
-a:hover {
-  color: #ff7518;
 }
