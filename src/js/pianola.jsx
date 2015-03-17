@@ -17,7 +17,8 @@ var Pianola = React.createClass({
     return (
       <div className="container">
         <h1 className="title">Pianola</h1>
-        <small><a href="https://github.com/JRJurman/pianola">Created By Jesse Jurman</a></small>
+        <a href="https://github.com/JRJurman/pianola">Created By Jesse Jurman</a>
+        <i className="fa fa-print fa-lg heading-icon last-icon"></i>
         <SelectChords id="input-tags-div" update={this.updateChords}/>
         <Keyboarder chords={this.state.chords}/>
       </div>

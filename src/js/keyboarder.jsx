@@ -3,8 +3,8 @@
 // renders a collection of keyboards in a table or div
 
 var React = require('react');
+var Teoria = require('teoria');
 var Keyboard = require('./keyboard');
-var chordMap = require('./chordMap');
 
 // class to render all the keyboards
 var Keyboarder = React.createClass({
@@ -28,10 +28,8 @@ var Keyboarder = React.createClass({
 
         // dispKeyboards is one or two keyboards...
         var dispKeyboards = chordPair.map( function(chord) {
-            var chordItem = chordMap[chord];
             return (
-                <Keyboard key={chordItem.value} chord={chord}
-                          voicing={0} value={chordItem.value} />
+                <Keyboard key={chord} chord={chord} voicing={0} />
             );
         })
 

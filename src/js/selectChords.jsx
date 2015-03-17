@@ -5,6 +5,8 @@
 var React = require('react');
 var Keyboarder = require('./Keyboarder');
 var chordTruths = require('./chordTruths');
+var Teoria = require('teoria');
+
 
 var SelectChords = React.createClass({
   getInitialState: function() {
@@ -97,7 +99,7 @@ var ChordGroups = React.createClass({
 var DefaultChords = React.createClass({
   render: function() {
     var tonic = this.props.tonic;
-    var chordArray = chordTruths.chords.map( function(c) {
+    var chordArray = chordTruths.general_chords.map( function(c) {
       return (<Chord key={c} tonic={tonic} chord={c} />);
     });
     return (

@@ -30,6 +30,15 @@ div.chord-header {
   margin-bottom: 0px;
 }
 
+.heading-icon {
+  float: right;
+  margin-right: 1%
+}
+
+.last-icon {
+  margin-right: 2.5%;
+}
+
 .container {
   padding-bottom: 15px;
 }

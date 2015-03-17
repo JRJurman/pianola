@@ -15,3 +15,8 @@ i.fa-circle.selected, i.fa-circle-o.selected {
 i.fa-circle:hover, i.fa-circle-o:hover {
   color: rgb(255,163,24);
 }
+
+/* any icons we want to add can go here */
+i.fa-print {
+  color: rgb(255,163,24);
+}
