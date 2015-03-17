@@ -43,6 +43,7 @@ var SelectChords = React.createClass({
         delimiter: ',',
         maxOptions: 5,
         dataAttr: 'legends',
+        create: true,
         onChange: function() {
           updater(this.items);
           self.popDropDown();
