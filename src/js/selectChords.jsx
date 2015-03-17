@@ -7,7 +7,7 @@ var Keyboarder = require('./Keyboarder');
 var chordTruths = require('./chordTruths');
 var Teoria = require('teoria');
 
-
+// Selectize Input where users enter the chords they want to see
 var SelectChords = React.createClass({
   getInitialState: function() {
     return {spacer: {}};
@@ -95,6 +95,7 @@ var SelectChords = React.createClass({
   }
 });
 
+// The default chord options groups by key
 var ChordGroups = React.createClass({
   render: function() {
     var groupArray = chordTruths.keys.map( function(k) {
@@ -108,6 +109,7 @@ var ChordGroups = React.createClass({
   }
 })
 
+// The chords from the general_chords in the chordTruths object
 var DefaultChords = React.createClass({
   render: function() {
     var tonic = this.props.tonic;
@@ -122,6 +124,7 @@ var DefaultChords = React.createClass({
   }
 });
 
+// A chord option which represents a possible default option
 var Chord = React.createClass({
   render: function() {
     var tonic = this.props.tonic;
