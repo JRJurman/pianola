@@ -44,6 +44,17 @@ var SelectChords = React.createClass({
         maxOptions: 5,
         dataAttr: 'legends',
         create: true,
+        createFilter: function( input ) {
+          var creatable;
+          try {
+            var tChord = Teoria.chord( input );
+            creatable = (tChord != undefined);
+          }
+          catch (err) {
+            creatable = false;
+          }
+          return creatable;
+        },
         onChange: function() {
           updater(this.items);
           self.popDropDown();
