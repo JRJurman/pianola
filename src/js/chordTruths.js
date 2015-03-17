@@ -13,10 +13,4 @@ chordTruths.general_chords = [
   "", "m", "7", "m7", "M7", " dim", "aug", "6", "m6", "sus4", "sus2"
 ];
 
-chordTruths.abbrv = {
-  'm':'minor',
-  'M':'major',
-  'sus4':'sus'
-};
-
 module.exports = chordTruths;

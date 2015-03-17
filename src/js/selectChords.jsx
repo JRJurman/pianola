@@ -69,23 +69,7 @@ var SelectChords = React.createClass({
         render: {
           optgroup_header: function(data, escape) {
       			return '<div class="optgroup-header"><h4 class="groups">' + escape(data["value"]) + ' Chords:</h3></div>';
-      		},
-          option: function(data, escape) {
-            var legends = [];
-            Object.keys(chordTruths.abbrv).forEach( function(abbrv) {
-              if (data["value"].indexOf(abbrv) !== -1) {
-                legends.push(" " + abbrv + ' <i class="fa fa-long-arrow-right"></i> ' + chordTruths.abbrv[abbrv]);
-              };
-            });
-            var legendTags = "";
-            if (legends.length > 0) {
-              legendTags = '<li class="abbrv">' + legends.join('</li> <li class="abbrv">') + '</li>';
-            };
-            return '<ul class="breadcrumb">' +
-                      '<li class="active">' + escape(data["value"]) + '</li>' +
-                       legendTags +
-                   '</ul>';
-          }
+      		}
         }
       }
       /* end selectize stuff */
@@ -130,17 +114,8 @@ var Chord = React.createClass({
     var tonic = this.props.tonic;
     var chord = tonic + this.props.chord;
 
-    // we're treating the text value as anything that could be searched
-    var text = chord+' ';
-
-    Object.keys(chordTruths.abbrv).forEach( function(abbrv) {
-      if (chord.indexOf(abbrv) !== -1) {
-        text += tonic+chordTruths.abbrv[abbrv] + " ";
-      };
-    });
-
     return (
-      <option value={chord}>{text}</option>
+      <option value={chord}>{chord}</option>
     );
   }
 });
