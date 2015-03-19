@@ -19,7 +19,7 @@ var Pianola = React.createClass({
   },
   render: function() {
     var printStyle = {visibility:'visible'};
-    if (!window.print) {
+    if (!('print' in window)) {
       printStyle = {display:'hidden'};
     }
 
