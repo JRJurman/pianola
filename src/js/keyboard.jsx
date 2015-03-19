@@ -8,15 +8,7 @@ var Teoria = require('teoria');
 // keyboard class which has 3 Octaves
 // it takes in an object, with first, second, and third attributes
 var Keyboard = React.createClass({
-  getInitialState: function() {
-    return {voice: this.props.voicing};
-  },
-  handleClick: function(voicing) {
-    this.setState( {voice: voicing} );
-  },
   render: function() {
-    // figure out what voicing we're playing
-    var voicing = this.state.voice;
 
     // use Teoria to build visual chord object
     var teoChord = Teoria.chord( this.props.chord );
@@ -40,17 +32,6 @@ var Keyboard = React.createClass({
     var second = checkOctave(teoChord.notes(), 4);
     var third = checkOctave(teoChord.notes(), 5);
 
-    var voices = [];
-    // render the different voicedots possible for this chord
-    var voiceDots = voices.map( (value, index) => {
-      var vTrue = voicing==index ? "fa-circle selected" : "fa-circle-o";
-      return ( <VoicingDot  key={index}
-                            click={this.handleClick}
-                            selected={vTrue}
-                            voicing={index} />
-      );
-    });
-
     var white_key_width = 15;
     var Octave_width = white_key_width*7;
     var keyboard_width = Octave_width*3;
@@ -62,7 +43,7 @@ var Keyboard = React.createClass({
     return (
       <div className="no-break col-sm-6">
         <div className="chord-header">
-          <h3>{this.props.chord} <span className="dots"> {voiceDots} </span> </h3>
+          <h3>{this.props.chord}</h3>
         </div>
         <div className="svg-divbox">
           <svg className="svg-keyboard" viewBox={viewBox_value}>
@@ -73,33 +54,6 @@ var Keyboard = React.createClass({
         </div>
       </div>
     );
-  }
-});
-
-// A voicing dot, which allows the user to change the voicing of the chord
-var VoicingDot = React.createClass({
-  onClick: function() {
-    this.props.click(this.props.voicing);
-  },
-  render: function() {
-    var words = [ "first", "second", "third", "fourth",
-                  "fifth", "sixth", "seventh", "eighth",
-                  "ninth", "tenth", "eleventh", "twelfth"];
-    var text = words[this.props.voicing] + " voicing";
-    var classText = "fa " + this.props.selected;
-    return (
-      <i
-        className={classText}
-        ref="voicinginput"
-        data-toggle="tooltip"
-        data-placement="top"
-        onClick={this.onClick}
-        title=""
-        data-original-title={text} />
-    );
-  },
-  componentDidMount: function() {
-    $(this.refs.voicinginput.getDOMNode()).tooltip();
   }
 });
 
