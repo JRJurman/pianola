@@ -18,20 +18,11 @@ var Pianola = React.createClass({
     window.print();
   },
   render: function() {
-    var printStyle = {visibility:'visible'};
-    if (!('print' in window)) {
-      printStyle = {visibility:'hidden'};
-    }
-    else {
-      alert(window.print);
-    }
-
     return (
       <div className="container">
         <h1 className="title">Pianola</h1>
         <a href="https://github.com/JRJurman/pianola">Created By Jesse Jurman</a>
-        <i className="fa fa-print fa-lg heading-icon last-icon"
-            onClick={this.printClick} style={printStyle} />
+        <i className="fa fa-print fa-lg heading-icon last-icon" onClick={this.printClick} />
         <SelectChords id="input-tags-div" update={this.updateChords} />
         <Keyboarder chords={this.state.chords} />
       </div>
