@@ -3,11 +3,17 @@
 // react class that renders the selectize input
 
 var React = require('react');
+var Fluxxor = require('fluxxor');
+
 var Keyboarder = require('./keyboarder');
 var Teoria = require('teoria');
 
+var FluxMixin = Fluxxor.FluxMixin(React);
+
 // Selectize Input where users enter the chords they want to see
 var SelectChords = React.createClass({
+  mixins: [FluxMixin],
+
   getInitialState: function() {
     return {spacer: {}};
   },
@@ -35,7 +41,7 @@ var SelectChords = React.createClass({
   // when it mounts, add all the selectize attributes
   componentDidMount: function() {
     var self = this;
-    var updater = this.props.update;
+    var flux = this.getFlux();
 
     /* Selectize options and events */
     var select = $(this.refs.chordinput.getDOMNode()).selectize({
@@ -54,8 +60,14 @@ var SelectChords = React.createClass({
           }
           return creatable;
         },
-        onChange: function() {
-          updater(this.items);
+        onItemAdd: function(value) {
+          var name = Teoria.chord(value).name
+          flux.actions.chords.addChord(name);
+          self.popDropDown();
+        },
+        onItemRemove: function(value) {
+          var name = Teoria.chord(value).name
+          flux.actions.chords.removeChord(name);
           self.popDropDown();
         },
         onDropdownOpen: function() {

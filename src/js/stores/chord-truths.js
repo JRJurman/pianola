@@ -6,7 +6,7 @@ var Fluxxor = require('fluxxor');
 
 var ChordTruths = Fluxxor.createStore({
 
-  initialize() {
+  initialize: function() {
     this.keys = ["C", "C#", "Db", "D", "D#", "Eb",
       "E", "F", "F#", "Gb", "G", "G#", "Ab",
       "A", "A#", "Bb", "B"];
@@ -16,7 +16,7 @@ var ChordTruths = Fluxxor.createStore({
     ];
   },
 
-  getState() {
+  getState: function() {
     return {
       keys: this.keys,
       generalChords: this.generalChords
