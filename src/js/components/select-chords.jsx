@@ -4,7 +4,6 @@
 
 var React = require('react');
 var Keyboarder = require('./keyboarder');
-var chordTruths = require('../chordTruths');
 var Teoria = require('teoria');
 
 // Selectize Input where users enter the chords they want to see
@@ -18,7 +17,7 @@ var SelectChords = React.createClass({
     return (
       <div>
         <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
-          <ChordGroups />
+          <ChordGroups chordTruths={this.props.chordTruths} />
         </select>
         <div id="spacer" style={this.state.spacer}></div>
       </div>
@@ -82,8 +81,8 @@ var SelectChords = React.createClass({
 // The default chord options groups by key
 var ChordGroups = React.createClass({
   render: function() {
-    var groupArray = chordTruths.keys.map( function(k) {
-      return (<DefaultChords key={k} tonic={k} />);
+    var groupArray = this.props.chordTruths.keys.map( (k) => {
+      return (<DefaultChords generalChords={this.props.chordTruths.generalChords} key={k} tonic={k} />);
     });
     return (
       <div>
@@ -97,7 +96,7 @@ var ChordGroups = React.createClass({
 var DefaultChords = React.createClass({
   render: function() {
     var tonic = this.props.tonic;
-    var chordArray = chordTruths.general_chords.map( function(c) {
+    var chordArray = this.props.generalChords.map( function(c) {
       return (<Chord key={c} tonic={tonic} chord={c} />);
     });
     return (
