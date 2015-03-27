@@ -3,17 +3,27 @@
 // react class that renders the web app pianola
 
 var React = require('react');
-var SelectChords = require('./SelectChords');
-var Keyboarder = require('./Keyboarder');
+var Fluxxor = require('fluxxor');
+
+var SelectChords = require('./select-chords');
+var Keyboarder = require('./keyboarder');
+
+var FluxMixin = Fluxxor.FluxMixin(React);
+var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
 // The main application
 var Pianola = React.createClass({
-  getInitialState: function() {
-    return {chords: []};
+
+  mixins: [FluxMixin, StoreWatchMixin('ChordTruths', 'Chords')],
+
+  getStateFromFlux: function() {
+    var flux = this.getFlux();
+    return {
+      chordTruths: flux.store('ChordTruths').getState(),
+      chords: flux.store('Chords').getState()
+    }
   },
-  updateChords: function(items) {
-    this.setState( {chords: items})
-  },
+
   printClick: function() {
     window.print();
   },
@@ -26,7 +36,7 @@ var Pianola = React.createClass({
         <a href="https://github.com/jrjurman/pianola/">
             <i className="fa fa-github fa-lg heading-icon" />
         </a>
-        <SelectChords id="input-tags-div" update={this.updateChords} />
+        <SelectChords id="input-tags-div" chordTruths={this.state.chordTruths} />
         <Keyboarder chords={this.state.chords} />
       </div>
     );

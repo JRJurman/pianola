@@ -1,14 +1,19 @@
-// selectChords.jsx
+// select-chords.jsx
 // created By Jesse Jurman
 // react class that renders the selectize input
 
 var React = require('react');
-var Keyboarder = require('./Keyboarder');
-var chordTruths = require('./chordTruths');
+var Fluxxor = require('fluxxor');
+
+var Keyboarder = require('./keyboarder');
 var Teoria = require('teoria');
+
+var FluxMixin = Fluxxor.FluxMixin(React);
 
 // Selectize Input where users enter the chords they want to see
 var SelectChords = React.createClass({
+  mixins: [FluxMixin],
+
   getInitialState: function() {
     return {spacer: {}};
   },
@@ -18,7 +23,7 @@ var SelectChords = React.createClass({
     return (
       <div>
         <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
-          <ChordGroups />
+          <ChordGroups chordTruths={this.props.chordTruths} />
         </select>
         <div id="spacer" style={this.state.spacer}></div>
       </div>
@@ -36,7 +41,7 @@ var SelectChords = React.createClass({
   // when it mounts, add all the selectize attributes
   componentDidMount: function() {
     var self = this;
-    var updater = this.props.update;
+    var flux = this.getFlux();
 
     /* Selectize options and events */
     var select = $(this.refs.chordinput.getDOMNode()).selectize({
@@ -55,8 +60,14 @@ var SelectChords = React.createClass({
           }
           return creatable;
         },
-        onChange: function() {
-          updater(this.items);
+        onItemAdd: function(value) {
+          var name = Teoria.chord(value).name
+          flux.actions.chords.addChord(name);
+          self.popDropDown();
+        },
+        onItemRemove: function(value) {
+          var name = Teoria.chord(value).name
+          flux.actions.chords.removeChord(name);
           self.popDropDown();
         },
         onDropdownOpen: function() {
@@ -82,8 +93,8 @@ var SelectChords = React.createClass({
 // The default chord options groups by key
 var ChordGroups = React.createClass({
   render: function() {
-    var groupArray = chordTruths.keys.map( function(k) {
-      return (<DefaultChords key={k} tonic={k} />);
+    var groupArray = this.props.chordTruths.keys.map( (k) => {
+      return (<DefaultChords generalChords={this.props.chordTruths.generalChords} key={k} tonic={k} />);
     });
     return (
       <div>
@@ -97,7 +108,7 @@ var ChordGroups = React.createClass({
 var DefaultChords = React.createClass({
   render: function() {
     var tonic = this.props.tonic;
-    var chordArray = chordTruths.general_chords.map( function(c) {
+    var chordArray = this.props.generalChords.map( function(c) {
       return (<Chord key={c} tonic={tonic} chord={c} />);
     });
     return (
