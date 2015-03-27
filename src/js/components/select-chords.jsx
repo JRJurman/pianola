@@ -1,10 +1,10 @@
-// selectChords.jsx
+// select-chords.jsx
 // created By Jesse Jurman
 // react class that renders the selectize input
 
 var React = require('react');
-var Keyboarder = require('./Keyboarder');
-var chordTruths = require('./chordTruths');
+var Keyboarder = require('./keyboarder');
+var chordTruths = require('../chordTruths');
 var Teoria = require('teoria');
 
 // Selectize Input where users enter the chords they want to see

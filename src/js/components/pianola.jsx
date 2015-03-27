@@ -3,8 +3,8 @@
 // react class that renders the web app pianola
 
 var React = require('react');
-var SelectChords = require('./SelectChords');
-var Keyboarder = require('./Keyboarder');
+var SelectChords = require('./select-chords');
+var Keyboarder = require('./keyboarder');
 
 // The main application
 var Pianola = React.createClass({
