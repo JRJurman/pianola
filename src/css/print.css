@@ -46,4 +46,9 @@
   width: 8.333333333333332%;
  }
 
+  /* styling to hide URLs that are being shown by bootstrap */
+
+  a[href]::after {
+      content: ""
   }
+}
