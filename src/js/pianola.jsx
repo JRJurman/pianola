@@ -23,6 +23,9 @@ var Pianola = React.createClass({
         <h1 className="title">Pianola</h1>
         <a href="https://github.com/JRJurman/">Created By Jesse Jurman</a>
         <i className="fa fa-print fa-lg heading-icon last-icon" onClick={this.printClick} />
+        <a href="https://github.com/jrjurman/pianola/">
+            <i className="fa fa-github fa-lg heading-icon" />
+        </a>
         <SelectChords id="input-tags-div" update={this.updateChords} />
         <Keyboarder chords={this.state.chords} />
       </div>

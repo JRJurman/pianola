@@ -3,3 +3,7 @@ i.fa-print {
   cursor: pointer;
   cursor: hand;
 }
+
+i:hover {
+  color: #ff7518;
+}
