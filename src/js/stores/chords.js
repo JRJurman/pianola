@@ -13,7 +13,8 @@ var Chords = Fluxxor.createStore({
 
     this.bindActions(
       constants.ADD_CHORD, this.onAddChord,
-      constants.REMOVE_CHORD, this.onRemoveChord
+      constants.REMOVE_CHORD, this.onRemoveChord,
+      constants.SET_CHORD_INVERSION, this.onSetChordInversion
     );
   },
 
@@ -24,6 +25,11 @@ var Chords = Fluxxor.createStore({
 
   onRemoveChord: function(payload) {
     this.chords.splice(this.chords.indexOf(payload.chord), 1);
+    this.emit('change');
+  },
+
+  onSetChordInversion: function(payload) {
+    this.chords.indexOf(payload.chord).inversion = payload.inversion;
     this.emit('change');
   },
 

@@ -4,6 +4,7 @@
 
 var React = require('react');
 var Teoria = require('teoria');
+var InversionDot = require('./inversionDot');
 
 // keyboard class which has 3 Octaves
 // it takes in an object, with first, second, and third attributes
@@ -11,7 +12,39 @@ var Keyboard = React.createClass({
   render: function() {
 
     // use Teoria to build visual chord object
-    var teoChord = Teoria.chord( this.props.chord );
+    var chord = this.props.chord;
+    var teoChord = Teoria.chord( chord.name );
+
+    // build invChord based on inversion from teoChord
+    var invChord = teoChord.notes().map( function( note, index ) {
+      var inv = 12 * (index < chord.inversion)
+      return Teoria.note.fromKey(teoChord.notes()[index].key() + inv);
+    });
+
+    // replicate the notes() functionality from teoChord
+    invChord.notes = function() {return this;}
+
+    // determine the lowest and highest chord
+    var lowOctave, highOctave, disparity, startOctave;
+    invChord.notes().forEach( function( note ) {
+      lowOctave = Math.min(lowOctave || 100, note.octave());
+      highOctave = Math.max(highOctave || -1, note.octave());
+    });
+    var disparity = highOctave - lowOctave;
+    var startOctave;
+
+    // if the disparity is >= 2, we have too many octaves,
+    // just start from the lowest
+    if ( disparity >= 2 ) {
+      startOctave = lowOctave;
+    }
+
+    // if the disparity is < 2, we have enough that we can center the chord,
+    // start from the lowest - 1
+    else {
+      startOctave = lowOctave - 1;
+    }
+
 
     // function, when given a set of notes, returns a set within an octave
     function checkOctave(notes, octave) {
@@ -28,13 +61,23 @@ var Keyboard = React.createClass({
       // join the whole list into one string
     };
 
-    var first = checkOctave(teoChord.notes(), 3)
-    var second = checkOctave(teoChord.notes(), 4);
-    var third = checkOctave(teoChord.notes(), 5);
+    // get the notes for our (visually) first, second, and third octave
+    var first  = checkOctave(invChord.notes(), startOctave+0);
+    var second = checkOctave(invChord.notes(), startOctave+1);
+    var third  = checkOctave(invChord.notes(), startOctave+2);
 
+    // some defaults for size
     var white_key_width = 15;
     var Octave_width = white_key_width*7;
     var keyboard_width = Octave_width*3;
+
+    // build the inversion dots
+    inversionDots = invChord.notes().map( function(note, index) {
+      return ( <InversionDot  key={index}
+                              chord={chord}
+                              inversion={index} />
+      );
+    });
 
     // the viewBox is a list of min-width, min-height, width, and height
     // we use this to properly scale our keyboards out to the correct size
@@ -43,7 +86,12 @@ var Keyboard = React.createClass({
     return (
       <div className="no-break col-sm-6">
         <div className="chord-header">
-          <h3>{this.props.chord}</h3>
+          <h3>
+            {this.props.chord.name}
+            <span className="dots">
+              {inversionDots}
+            </span>
+          </h3>
         </div>
         <div className="svg-divbox">
           <svg className="svg-keyboard" viewBox={viewBox_value}>

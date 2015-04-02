@@ -28,7 +28,7 @@ var Keyboarder = React.createClass({
         // dispKeyboards is one or two keyboards...
         var dispKeyboards = chordPair.map( function(chord) {
             return (
-                <Keyboard key={chord} chord={chord} voicing={0} />
+                <Keyboard key={chord.name} chord={chord} voicing={0} />
             );
         })
 

@@ -62,12 +62,12 @@ var SelectChords = React.createClass({
         },
         onItemAdd: function(value) {
           var name = Teoria.chord(value).name
-          flux.actions.chords.addChord(name);
+          flux.actions.chords.addChord({name:name, inversion:0});
           self.popDropDown();
         },
         onItemRemove: function(value) {
           var name = Teoria.chord(value).name
-          flux.actions.chords.removeChord(name);
+          flux.actions.chords.removeChord({name:name, inversion:0});
           self.popDropDown();
         },
         onDropdownOpen: function() {

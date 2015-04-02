@@ -1,9 +1,13 @@
-i.fa-print {
+i.fa-print, i.fa-circle-o, i.fa-circle {
   color: rgb(255,163,24);
   cursor: pointer;
   cursor: hand;
 }
 
-i:hover {
+i.fa-circle-o, i.fa-circle {
+  margin-right: 0.5em;
+}
+
+i:hover, i.fa-circle {
   color: #ff7518;
 }
