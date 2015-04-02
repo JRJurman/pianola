@@ -3,7 +3,6 @@
 // renders a collection of keyboards in a table or div
 
 var React = require('react');
-var Teoria = require('teoria');
 var Keyboard = require('./keyboard');
 
 // class to render all the keyboards
