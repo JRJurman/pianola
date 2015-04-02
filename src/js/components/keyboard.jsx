@@ -16,10 +16,26 @@ var Keyboard = React.createClass({
     var teoChord = Teoria.chord( chord.name );
 
     // build invChord based on inversion from teoChord
-    var invChord = teoChord.notes().map( function( note, index ) {
+    // only use those notes that are 0 or greater semitones (not in the bass)
+    var invChord = teoChord.notes().filter( function( note, index ) {
+      return teoChord.voicing()[index].semitones() >= 0;
+    }).map( function( note, index, notes ) {
+      // nd - note disparity
+      var nd = teoChord.notes().length - notes.length;
       var inv = 12 * (index < chord.inversion)
-      return Teoria.note.fromKey(teoChord.notes()[index].key() + inv);
+      return Teoria.note.fromKey(teoChord.notes()[index + nd].key() + inv);
     });
+
+    // if we removed the bass, we need to add it again here
+    // also, record the fact that we did have a bass
+    var hasBass = false;
+    teoChord.notes().forEach( function( note, index ) {
+      if (teoChord.voicing()[index].semitones() < 0) {
+        hasBass = true;
+        invChord.unshift( note );
+      }
+    });
+
 
     // replicate the notes() functionality from teoChord
     invChord.notes = function() {return this;}
@@ -33,12 +49,15 @@ var Keyboard = React.createClass({
     var disparity = highOctave - lowOctave;
     var startOctave;
 
+    // if we have a bass, use that as our start octave
+    if ( hasBass ) {
+      startOctave = invChord.notes()[0].octave();
+    }
     // if the disparity is >= 2, we have too many octaves,
     // just start from the lowest
-    if ( disparity >= 2 ) {
+    else if ( disparity >= 2 ) {
       startOctave = lowOctave;
     }
-
     // if the disparity is < 2, we have enough that we can center the chord,
     // start from the lowest - 1
     else {
@@ -72,7 +91,11 @@ var Keyboard = React.createClass({
     var keyboard_width = Octave_width*3;
 
     // build the inversion dots
-    inversionDots = invChord.notes().map( function(note, index) {
+    // only use those notes that are 0 or greater semitones (not in the bass)
+    inversionDots = teoChord.notes().filter( function( note, index ) {
+      return teoChord.voicing()[index].semitones() >= 0;
+    })
+    .map( function(note, index) {
       return ( <InversionDot  key={index}
                               chord={chord}
                               inversion={index} />
