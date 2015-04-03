@@ -48,7 +48,12 @@ var SelectChords = React.createClass({
         delimiter: ',',
         maxOptions: 5,
         dataAttr: 'legends',
-        create: true,
+        create: function( input ) {
+          var tChord = Teoria.chord( input );
+          return {
+            value: tChord.name
+          };
+        },
         createFilter: function( input ) {
           var creatable;
           try {
