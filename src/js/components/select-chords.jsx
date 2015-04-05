@@ -51,7 +51,8 @@ var SelectChords = React.createClass({
         create: function( input ) {
           var tChord = Teoria.chord( input );
           return {
-            value: tChord.name
+            value: tChord.name,
+            text: tChord.name
           };
         },
         createFilter: function( input ) {
