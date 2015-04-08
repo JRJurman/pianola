@@ -1,11 +1,11 @@
 var constants = require('../constants/chords');
 
-function addChord(chord) {
-  this.dispatch(constants.ADD_CHORD, {chord: chord});
+function addChord(chord, index) {
+  this.dispatch(constants.ADD_CHORD, {chord: chord, index: index});
 }
 
-function removeChord(chord) {
-  this.dispatch(constants.REMOVE_CHORD, {chord: chord});
+function removeChord(index) {
+  this.dispatch(constants.REMOVE_CHORD, {index: index});
 }
 
 function setChordInversion(chord, inversion) {

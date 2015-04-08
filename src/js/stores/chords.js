@@ -19,12 +19,12 @@ var Chords = Fluxxor.createStore({
   },
 
   onAddChord: function(payload) {
-    this.chords.push(payload.chord)
+    this.chords.splice(payload.index, 0, payload.chord)
     this.emit('change');
   },
 
   onRemoveChord: function(payload) {
-    this.chords.splice(this.chords.indexOf(payload.chord), 1);
+    this.chords.splice(payload.index, 1);
     this.emit('change');
   },
 

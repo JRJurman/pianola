@@ -66,14 +66,29 @@ var SelectChords = React.createClass({
           }
           return creatable;
         },
-        onItemAdd: function(value) {
-          var name = Teoria.chord(value).name
-          flux.actions.chords.addChord({name:name, inversion:0});
+        onItemAdd: function(value, item) {
+          // get the position that we're inserting the chord
+          var insertIndex = this.items.indexOf(value);
+
+          // tell flux to add a new chord
+          var name = Teoria.chord(value).name;
+          flux.actions.chords.addChord({name:name, inversion:0}, insertIndex);
+
+          // keep track of what chords we've added (use slice to copy by value)
+          this.myItems = this.items.slice();
+
           self.popDropDown();
         },
         onItemRemove: function(value) {
-          var name = Teoria.chord(value).name
-          flux.actions.chords.removeChord({name:name, inversion:0});
+          // get the position that we're removing the chord
+          var removeIndex = this.myItems.indexOf(value);
+
+          // tell flux to remove the chord at the index
+          flux.actions.chords.removeChord(removeIndex);
+
+          // update our list of chords (use slice to copy by value)
+          this.myItems = this.items.slice();
+
           self.popDropDown();
         },
         onDropdownOpen: function() {
