@@ -11,13 +11,34 @@ rect.black-key {
   fill:rgb(0, 0, 0);
 }
 
+circle.white-key {
+  fill:url(#spot);
+  fill-opacity:0;
+}
+
+circle.black-key {
+  fill:url(#spot);
+  fill-opacity:0;
+}
+
 rect.white-key.selected {
-  fill:rgb(255,166,28);
+  /*fill:rgb(255,166,28);*/
+  fill:url(#white-press);
 }
 
 rect.black-key.selected {
-  fill:rgb(255,117,24);
+  /*fill:rgb(255,117,24);*/
+  fill:url(#black-press);
 }
+
+circle.white-key.selected {
+  fill-opacity:1;
+}
+
+circle.black-key.selected {
+  fill-opacity:1;
+}
+
 
 /* one day, it might be useful to highlight middle-c
 rect.white-key.C1 {
@@ -25,3 +46,36 @@ rect.white-key.C1 {
   stroke:rgb(255,75,24);
 }
 */
+
+/* gradiant colors ===================================
+   =================================================== */
+
+#white-press > .press-start {
+  stop-color:rgb(255,255,255);
+  stop-opacity:1;
+}
+
+#white-press > .press-end {
+  stop-color:rgb(230,230,230);
+  stop-opacity:1;
+}
+
+#black-press > .press-start {
+  stop-color:rgb(0,0,0);
+  stop-opacity:1;
+}
+
+#black-press > .press-end {
+  stop-color:rgb(125,125,125);
+  stop-opacity:1;
+}
+
+#spot > .press-start {
+  stop-color:rgb(255,176,38);
+  stop-opacity:1;
+}
+
+#spot > .press-end {
+  stop-color:rgb(255,166,28);
+  stop-opacity:1;
+}

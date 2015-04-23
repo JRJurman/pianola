@@ -118,6 +118,20 @@ var Keyboard = React.createClass({
         </div>
         <div className="svg-divbox">
           <svg className="svg-keyboard" viewBox={viewBox_value}>
+            <defs>
+                <linearGradient id="white-press" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop className="press-start" offset="0%" />
+                    <stop className="press-end" offset="100%" />
+                </linearGradient>
+                <linearGradient id="black-press" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop className="press-start" offset="0%" />
+                    <stop className="press-end" offset="100%" />
+                </linearGradient>
+                <linearGradient id="spot" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop className="press-start" offset="0%" />
+                    <stop className="press-end" offset="100%" />
+                </linearGradient>
+            </defs>
             <Octave number="0" selected={first} />
             <Octave number="1" selected={second} />
             <Octave number="2" selected={third} />
@@ -173,6 +187,7 @@ var WhiteKey = React.createClass({
       classname += " selected";
     }
     var width=15;
+    var height=50;
     var note_position;
     if (this.props.note >= "C") {
       note_position = this.props.note.charCodeAt() - 67;
@@ -183,7 +198,10 @@ var WhiteKey = React.createClass({
     }
     var position = width * (note_position);
     return (
-      <rect className={classname} x={position} width={width} height="50" />
+      <g>
+        <rect className={classname} x={position} width={width} height={height} />
+        <circle className={classname} cx={position+(width/2)} cy={height*0.80} r={width/3}/>
+      </g>
     );
   }
 });
@@ -197,6 +215,7 @@ var BlackKey = React.createClass({
       classname += " selected";
     }
     var width=8;
+    var height=25;
     var note_position;
     if (this.props.note >= "C") {
       note_position = this.props.note.charCodeAt() - 67;
@@ -207,7 +226,10 @@ var BlackKey = React.createClass({
     }
     var position = white_key_width * (note_position) + 11;
     return (
-      <rect className={classname} x={position} width={width} height="25" />
+      <g>
+        <rect className={classname} x={position} width={width} height={height} />
+        <circle className={classname} cx={position+(width/2)} cy={height*0.80} r={white_key_width/3}/>
+      </g>
     )
   }
 });
