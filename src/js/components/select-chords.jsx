@@ -45,6 +45,7 @@ var SelectChords = React.createClass({
 
     /* Selectize options and events */
     var select = $(this.refs.chordinput.getDOMNode()).selectize({
+        items: flux.stores.Chords.chords.map( function(chord) { return chord.name } ),
         delimiter: ',',
         maxOptions: 5,
         dataAttr: 'legends',
@@ -74,20 +75,15 @@ var SelectChords = React.createClass({
           var name = Teoria.chord(value).name;
           flux.actions.chords.addChord({name:name, inversion:0}, insertIndex);
 
-          // keep track of what chords we've added (use slice to copy by value)
-          this.myItems = this.items.slice();
-
           self.popDropDown();
         },
         onItemRemove: function(value) {
           // get the position that we're removing the chord
-          var removeIndex = this.myItems.indexOf(value);
+          var myItems = flux.stores.Chords.chords.map( function(chord) { return chord.name } );
+          var removeIndex = myItems.indexOf(value);
 
           // tell flux to remove the chord at the index
           flux.actions.chords.removeChord(removeIndex);
-
-          // update our list of chords (use slice to copy by value)
-          this.myItems = this.items.slice();
 
           self.popDropDown();
         },
@@ -103,10 +99,8 @@ var SelectChords = React.createClass({
       			return '<div class="optgroup-header"><h4 class="groups">' + escape(data["value"]) + ' Chords:</h3></div>';
       		}
         }
-      }
-      /* end selectize stuff */
-
-    );
+    });
+    /* end selectize stuff */
 
   }
 });
