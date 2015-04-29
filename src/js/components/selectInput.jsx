@@ -23,7 +23,8 @@ var SelectInput = React.createClass({
   render: function() {
     var placeholder = "Click here, and type in your chords!";
     return (
-      <div>
+      <div className="inner-addon right-addon">
+        <i className="fa fa-search"></i>
         <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
           <ChordGroups chordTruths={this.props.chordTruths} />
           <ScaleGroups chordTruths={this.props.chordTruths} />
@@ -84,7 +85,6 @@ var SelectInput = React.createClass({
             scalename = value.split(" ");
             flux.actions.keyboards.addScale({type: "scale", name:value, tonic:scalename[0], scale:scalename[1]}, insertIndex);
           }
-
 
           self.popDropDown();
         },

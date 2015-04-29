@@ -51,6 +51,26 @@ svg#svg-defs {
   height: 0px;
 }
 
+/* things */
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .fa {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.right-addon .fa { right: 0px;}
+
+/* add padding  */
+.right-addon .selectize-input { padding-right: 30px; }
+
+
 /* the following svg code varies from tympanus.net which includes
    a most useful tutorial on making responsive SVGs (for most browsers)..
    http://tympanus.net/Tutorials/ResponsiveSVGs/index3.html
