@@ -65,7 +65,10 @@ svg#svg-defs {
 }
 
 /* align icon */
-.right-addon .fa { right: 0px;}
+.right-addon .fa {
+  right: 0px;
+  z-index: 2;
+}
 
 /* add padding  */
 .right-addon .selectize-input { padding-right: 30px; }
