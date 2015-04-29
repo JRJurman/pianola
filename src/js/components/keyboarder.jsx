@@ -41,6 +41,22 @@ var Keyboarder = React.createClass({
     });
     return (
       <div className="container">
+        <svg id="svg-defs">
+            <defs>
+                <linearGradient id="white-press" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop className="press-start" offset="0%" />
+                    <stop className="press-end" offset="100%" />
+                </linearGradient>
+                <linearGradient id="black-press" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop className="press-start" offset="0%" />
+                    <stop className="press-end" offset="100%" />
+                </linearGradient>
+                <linearGradient id="spot" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop className="press-start" offset="0%" />
+                    <stop className="press-end" offset="100%" />
+                </linearGradient>
+            </defs>
+        </svg>
         {keyboards}
       </div>
     );

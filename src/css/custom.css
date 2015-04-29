@@ -47,6 +47,10 @@ a:hover {
   color: #ff7518;
 }
 
+svg#svg-defs {
+  height: 0px;
+}
+
 /* the following svg code varies from tympanus.net which includes
    a most useful tutorial on making responsive SVGs (for most browsers)..
    http://tympanus.net/Tutorials/ResponsiveSVGs/index3.html
