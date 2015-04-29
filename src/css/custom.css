@@ -51,8 +51,9 @@ svg#svg-defs {
   height: 0px;
 }
 
-/* things */
-/* enable absolute positioning */
+/* add the search icon, taken from stackoverflow: 
+  http://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-box
+*/
 .inner-addon {
     position: relative;
 }
