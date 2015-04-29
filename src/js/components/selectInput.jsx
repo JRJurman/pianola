@@ -1,4 +1,4 @@
-// select-chords.jsx
+// selectInput.jsx
 // created By Jesse Jurman
 // react class that renders the selectize input
 
@@ -7,11 +7,13 @@ var Fluxxor = require('fluxxor');
 
 var Keyboarder = require('./keyboarder');
 var Teoria = require('teoria');
+var ChordGroups = require('./chordGroups');
+var ScaleGroups = require('./scaleGroups');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 
 // Selectize Input where users enter the chords they want to see
-var SelectChords = React.createClass({
+var SelectInput = React.createClass({
   mixins: [FluxMixin],
 
   getInitialState: function() {
@@ -24,6 +26,7 @@ var SelectChords = React.createClass({
       <div>
         <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
           <ChordGroups chordTruths={this.props.chordTruths} />
+          <ScaleGroups chordTruths={this.props.chordTruths} />
         </select>
         <div id="spacer" style={this.state.spacer}></div>
       </div>
@@ -45,7 +48,7 @@ var SelectChords = React.createClass({
 
     /* Selectize options and events */
     var select = $(this.refs.chordinput.getDOMNode()).selectize({
-        items: flux.stores.Chords.chords.map( function(chord) { return chord.name } ),
+        items: flux.stores.Keyboards.keyboards.map( function(chord) { return chord.name } ),
         delimiter: ',',
         maxOptions: 5,
         dataAttr: 'legends',
@@ -71,19 +74,27 @@ var SelectChords = React.createClass({
           // get the position that we're inserting the chord
           var insertIndex = this.items.indexOf(value);
 
+          var chordname, scalename;
           // tell flux to add a new chord
-          var name = Teoria.chord(value).name;
-          flux.actions.chords.addChord({name:name, inversion:0}, insertIndex);
+          if (value.indexOf("scale") == -1) {
+            chordname = Teoria.chord(value).name;
+            flux.actions.keyboards.addChord({name:chordname, inversion:0}, insertIndex);
+          }
+          else {
+            scalename = value.split(" ");
+            flux.actions.keyboards.addScale({tonic:scalename[0], scale:scalename[1]}, insertIndex);
+          }
+
 
           self.popDropDown();
         },
         onItemRemove: function(value) {
           // get the position that we're removing the chord
-          var myItems = flux.stores.Chords.chords.map( function(chord) { return chord.name } );
+          var myItems = flux.stores.Keyboards.keyboards.map( function(chord) { return chord.name } );
           var removeIndex = myItems.indexOf(value);
 
           // tell flux to remove the chord at the index
-          flux.actions.chords.removeChord(removeIndex);
+          flux.actions.keyboards.removeChord(removeIndex);
 
           self.popDropDown();
         },
@@ -105,45 +116,4 @@ var SelectChords = React.createClass({
   }
 });
 
-// The default chord options groups by key
-var ChordGroups = React.createClass({
-  render: function() {
-    var groupArray = this.props.chordTruths.keys.map( (k) => {
-      return (<DefaultChords generalChords={this.props.chordTruths.generalChords} key={k} tonic={k} />);
-    });
-    return (
-      <div>
-        {groupArray}
-      </div>
-    );
-  }
-})
-
-// The chords from the general_chords in the chordTruths object
-var DefaultChords = React.createClass({
-  render: function() {
-    var tonic = this.props.tonic;
-    var chordArray = this.props.generalChords.map( function(c) {
-      return (<Chord key={c} tonic={tonic} chord={c} />);
-    });
-    return (
-      <optgroup label={tonic}>
-        {chordArray}
-      </optgroup>
-    );
-  }
-});
-
-// A chord option which represents a possible default option
-var Chord = React.createClass({
-  render: function() {
-    var tonic = this.props.tonic;
-    var chord = tonic + this.props.chord;
-
-    return (
-      <option value={chord}>{chord}</option>
-    );
-  }
-});
-
-module.exports = SelectChords;
+module.exports = SelectInput;

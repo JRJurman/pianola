@@ -8,10 +8,10 @@ var Keyboard = require('./keyboard');
 // class to render all the keyboards
 var Keyboarder = React.createClass({
   render: function() {
-    var selectChords = this.props.chords;
+    var selectKeyboards = this.props.keyboards;
 
     // we need to pair up the keyboards, so that we can show them in rows
-    var pairChords = selectChords.reduce( function(list, element, index) {
+    var pairKeyboards = selectKeyboards.reduce( function(list, element, index) {
       if ( index % 2==0 ) {
         // the first element in our pair
         list.push( [element] );
@@ -23,10 +23,10 @@ var Keyboarder = React.createClass({
       return list;
     }, []);
 
-    var keyboards = pairChords.map( function(chordPair, rowIndex) {
+    var keyboards = pairKeyboards.map( function(keyboardPair, rowIndex) {
 
         // dispKeyboards is one or two keyboards...
-        var dispKeyboards = chordPair.map( function(chord) {
+        var dispKeyboards = keyboardPair.map( function(chord) {
             return (
                 <Keyboard key={chord.name} chord={chord} voicing={0} />
             );

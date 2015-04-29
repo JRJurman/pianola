@@ -17,7 +17,7 @@ var InversionDot = React.createClass({
     var chord = this.props.chord;
 
     chord.inversion = this.props.inversion;
-    flux.actions.chords.setChordInversion(chord);
+    flux.actions.keyboards.setChordInversion(chord);
   },
 
   render: function() {

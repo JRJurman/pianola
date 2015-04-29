@@ -1,7 +1,7 @@
 var ChordTruths = require('./chord-truths');
-var Chords = require('./chords');
+var Keyboards = require('./keyboards');
 
 module.exports = {
   ChordTruths: new ChordTruths(),
-  Chords: new Chords
+  Keyboards: new Keyboards
 };
