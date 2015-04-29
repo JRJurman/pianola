@@ -60,7 +60,11 @@ var Keyboarder = React.createClass({
                     <stop className="press-start" offset="0%" />
                     <stop className="press-end" offset="100%" />
                 </linearGradient>
-                <linearGradient id="spot" x1="0%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id="chord-spot" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop className="press-start" offset="0%" />
+                    <stop className="press-end" offset="100%" />
+                </linearGradient>
+                <linearGradient id="scale-spot" x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop className="press-start" offset="0%" />
                     <stop className="press-end" offset="100%" />
                 </linearGradient>

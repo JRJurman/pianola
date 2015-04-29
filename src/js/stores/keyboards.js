@@ -9,7 +9,13 @@ var constants = require('../constants/keyboards');
 var Keyboards = Fluxxor.createStore({
 
   initialize: function() {
-    this.keyboards = JSON.parse(localStorage.keyboards || "[]");
+    var defaultKeyboards = JSON.stringify([
+      {"type":"chord","name":"C","inversion":0},
+      {"type":"scale","name":"C Major Scale","tonic":"C","scale":"Major"},
+      {"type":"chord","name":"Cm","inversion":0},
+      {"type":"scale","name":"C Minor Scale","tonic":"C","scale":"Minor"}
+    ]);
+    this.keyboards = JSON.parse(localStorage.keyboards || defaultKeyboards);
 
     this.bindActions(
       constants.ADD_CHORD, this.onAddChord,

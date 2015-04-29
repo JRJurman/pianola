@@ -26,7 +26,7 @@ var DefaultChords = React.createClass({
       return (<Chord key={c} tonic={tonic} chord={c} />);
     });
     return (
-      <optgroup label={tonic}>
+      <optgroup label={tonic + " Chords"}>
         {chordArray}
       </optgroup>
     );

@@ -107,8 +107,33 @@ var SelectInput = React.createClass({
         searchField: ["text"],
         render: {
           optgroup_header: function(data, escape) {
-      			return '<div class="optgroup-header"><h4 class="groups">' + escape(data["value"]) + ' Chords:</h3></div>';
-      		}
+            // give option groups a LARGE header
+      			return '<div class="optgroup-header"><h4 class="groups">' + escape(data["value"]) + ':</h3></div>';
+      		},
+          'option': function(data, escape) {
+            // render options as either orange or blue
+            var classes = "option";
+            if (escape(data["optgroup"]).indexOf("Chords") != -1) {
+              classes += " chord-option";
+            }
+            else if (escape(data["optgroup"]).indexOf("Scales") != -1) {
+              classes += " scale-option";
+            }
+
+    				return '<div class="'+classes+'">' + escape(data["value"]) + '</div>';
+    			},
+    			'item': function(data, escape) {
+            // render options as either orange or blue
+            var classes = "item";
+            if (escape(data["optgroup"]).indexOf("Chords") != -1) {
+              classes += " chord-item";
+            }
+            else if (escape(data["optgroup"]).indexOf("Scales") != -1) {
+              classes += " scale-item";
+            }
+
+    				return '<div class="'+classes+'">' + escape(data["value"]) + '</div>';
+    			}
         }
     });
     /* end selectize stuff */

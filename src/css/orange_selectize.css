@@ -1,23 +1,34 @@
-/* this css makes the selectize component orange, so it's more to the theme */
+/* this css makes the selectize component colors, so it's more to the theme */
 
-.selectize-control.multi .selectize-input>div {
-  border: 0px;
+/* this css NEEDS to become cleaner, for now, !important is a hack */
+/* defined in the render function of selectInput */
+
+div.item {
+  border: 0px !important;
 }
 
-.selectize-control.multi .selectize-input>div.active {
-  border: 0px;
+div.item.scale-item {
+  text-shadow: 0 0px 0 rgba(0,51,83,.3) !important;
+  background-color: #2780e3 !important;
+  background-image: linear-gradient(to bottom,#2780e3,#2780e3) !important;
 }
 
-.selectize-control.multi .selectize-input [data-value] {
-  text-shadow: 0 0px 0 rgba(0,51,83,.3);
-  background-color: #FFA61C;
-  background-image: linear-gradient(to bottom,#FFA61C,#FFA61C)
+div.item.scale-item.active {
+  text-shadow: 0 0px 0 rgba(0,51,83,.3) !important;
+  background-color: #0f3f75 !important;
+  background-image: linear-gradient(to bottom,#0f3f75,#0f3f75) !important;
 }
 
-.selectize-control.multi .selectize-input [data-value].active {
-  text-shadow: 0 0px 0 rgba(0,51,83,.3);
-  background-color: #ff7518;
-  background-image: linear-gradient(to bottom,#ff7518,#ff7518)
+div.item.chord-item {
+  text-shadow: 0 0px 0 rgba(0,51,83,.3) !important;
+  background-color: #FFA61C !important;
+  background-image: linear-gradient(to bottom,#FFA61C,#FFA61C) !important;
+}
+
+div.item.chord-item.active {
+  text-shadow: 0 0px 0 rgba(0,51,83,.3) !important;
+  background-color: #ff7518 !important;
+  background-image: linear-gradient(to bottom,#ff7518,#ff7518) !important;
 }
 
 .selectize-dropdown .active {

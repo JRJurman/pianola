@@ -27,7 +27,7 @@ var DefaultScales = React.createClass({
       return (<Scale key={c} tonic={tonic} scale={c} />);
     });
     return (
-      <optgroup label={tonic}>
+      <optgroup label={tonic + " Scales"}>
         {scaleArray}
       </optgroup>
     );

@@ -72,7 +72,7 @@ var KeyboardChord = React.createClass({
           </h3>
         </div>
         <div className="svg-divbox">
-          <svg className="svg-keyboard" viewBox={viewBox_value}>
+          <svg className="svg-keyboard scale-keyboard" viewBox={viewBox_value}>
             <Octave number="0" selected={first} />
             <Octave number="1" selected={second} />
             <Octave number="2" selected={third} />

@@ -11,16 +11,6 @@ rect.black-key {
   fill:rgb(0, 0, 0);
 }
 
-circle.white-key {
-  fill:url(#spot);
-  fill-opacity:0;
-}
-
-circle.black-key {
-  fill:url(#spot);
-  fill-opacity:0;
-}
-
 rect.white-key.selected {
   /*fill:rgb(255,166,28);*/
   fill:url(#white-press);
@@ -31,11 +21,39 @@ rect.black-key.selected {
   fill:url(#black-press);
 }
 
-circle.white-key.selected {
+.chord-keyboard > g > g > circle.white-key {
+  fill:url(#chord-spot);
+  fill-opacity:0;
+}
+
+.chord-keyboard > g > g > circle.black-key {
+  fill:url(#chord-spot);
+  fill-opacity:0;
+}
+
+.scale-keyboard > g > g > circle.white-key {
+  fill:url(#scale-spot);
+  fill-opacity:0;
+}
+
+.scale-keyboard > g > g > circle.black-key {
+  fill:url(#scale-spot);
+  fill-opacity:0;
+}
+
+.chord-keyboard > g > g > circle.white-key.selected {
   fill-opacity:1;
 }
 
-circle.black-key.selected {
+.chord-keyboard > g > g > circle.black-key.selected {
+  fill-opacity:1;
+}
+
+.scale-keyboard > g > g > circle.white-key.selected {
+  fill-opacity:1;
+}
+
+.scale-keyboard > g > g > circle.black-key.selected {
   fill-opacity:1;
 }
 
@@ -70,12 +88,22 @@ rect.white-key.C1 {
   stop-opacity:1;
 }
 
-#spot > .press-start {
+#chord-spot > .press-start {
   stop-color:rgb(255,176,38);
   stop-opacity:1;
 }
 
-#spot > .press-end {
-  stop-color:rgb(255,166,28);
+#chord-spot > .press-end {
+  stop-color:rgb(245,166,28);
+  stop-opacity:1;
+}
+
+#scale-spot > .press-start {
+  stop-color:rgb(89, 130, 251);
+  stop-opacity:1;
+}
+
+#scale-spot > .press-end {
+  stop-color:rgb(29,118,217);
   stop-opacity:1;
 }
