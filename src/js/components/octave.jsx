@@ -2,7 +2,7 @@
 // created By Jesse Jurman
 
 var React = require('react');
-var Teoria = require('teoria');
+var Teoria = require('../lib/teoria');
 
 // a single Octave, really an svg
 // it contains all the white keys and black keys,

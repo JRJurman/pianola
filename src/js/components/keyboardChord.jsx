@@ -3,7 +3,7 @@
 // describes the different react classes to render the keyboard
 
 var React = require('react');
-var Teoria = require('teoria');
+var Teoria = require('../lib/teoria');
 var InversionDot = require('./inversionDot');
 var Octave = require('./octave');
 

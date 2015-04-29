@@ -6,7 +6,7 @@ var React = require('react');
 var Fluxxor = require('fluxxor');
 
 var Keyboarder = require('./keyboarder');
-var Teoria = require('teoria');
+var Teoria = require('../lib/teoria');
 var ChordGroups = require('./chordGroups');
 var ScaleGroups = require('./scaleGroups');
 

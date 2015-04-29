@@ -3,7 +3,7 @@
 // describes the different react classes to render the keyboard
 
 var React = require('react');
-var Teoria = require('teoria');
+var Teoria = require('../lib/teoria');
 var Octave = require('./octave');
 
 // keyboard class for scales, which has 3 Octaves

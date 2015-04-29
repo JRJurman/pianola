@@ -3,7 +3,7 @@
 // react class that sets scales for the selectize input
 
 var React = require('react');
-var Teoria = require('teoria');
+var Teoria = require('../lib/teoria');
 
 // The default scale options groups by key
 var ScaleGroups = React.createClass({
