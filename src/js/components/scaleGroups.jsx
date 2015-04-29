@@ -39,7 +39,7 @@ var Scale = React.createClass({
   render: function() {
     var tonic = this.props.tonic;
     var scaleName = this.props.scale[0].toUpperCase() + this.props.scale.substring(1);
-    var scale = tonic + " " + scaleName + " scale";
+    var scale = tonic + " " + scaleName + " Scale";
 
     return (
       <option value={scale}>{scale}</option>

@@ -3,7 +3,8 @@
 // renders a collection of keyboards in a table or div
 
 var React = require('react');
-var Keyboard = require('./keyboard');
+var KeyboardChord = require('./keyboardChord');
+var KeyboardScale = require('./keyboardScale');
 
 // class to render all the keyboards
 var Keyboarder = React.createClass({
@@ -26,10 +27,18 @@ var Keyboarder = React.createClass({
     var keyboards = pairKeyboards.map( function(keyboardPair, rowIndex) {
 
         // dispKeyboards is one or two keyboards...
-        var dispKeyboards = keyboardPair.map( function(chord) {
-            return (
-                <Keyboard key={chord.name} chord={chord} voicing={0} />
-            );
+        var dispKeyboards = keyboardPair.map( function(ko) {
+            if ( ko.type == "chord" ) {
+              return (
+                  <KeyboardChord key={ko.name} keyboardObject={ko}/>
+              );
+            }
+            else if ( ko.type == "scale" ) {
+              return (
+                  <KeyboardScale key={ko.name} keyboardObject={ko}/>
+              );
+            }
+
         })
 
         // we pack them into rows for the bootstrap grid system

@@ -76,13 +76,13 @@ var SelectInput = React.createClass({
 
           var chordname, scalename;
           // tell flux to add a new chord
-          if (value.indexOf("scale") == -1) {
+          if (value.indexOf("Scale") == -1) {
             chordname = Teoria.chord(value).name;
-            flux.actions.keyboards.addChord({name:chordname, inversion:0}, insertIndex);
+            flux.actions.keyboards.addChord({type: "chord", name:chordname, inversion:0}, insertIndex);
           }
           else {
             scalename = value.split(" ");
-            flux.actions.keyboards.addScale({tonic:scalename[0], scale:scalename[1]}, insertIndex);
+            flux.actions.keyboards.addScale({type: "scale", name:value, tonic:scalename[0], scale:scalename[1]}, insertIndex);
           }
 
 
