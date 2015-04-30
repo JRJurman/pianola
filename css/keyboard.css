@@ -12,20 +12,20 @@ rect.black-key {
 }
 
 rect.white-key.selected {
-  fill:url('/#white-press');
+  fill:url(#white-press);
 }
 
 rect.black-key.selected {
-  fill:url('/#black-press');
+  fill:url(#black-press);
 }
 
 .chord-keyboard > g > g > circle.key {
-  fill:url('/#chord-spot');
+  fill:url(#chord-spot);
   fill-opacity:0;
 }
 
 .scale-keyboard > g > g > circle.key {
-  fill:url('/#scale-spot');
+  fill:url(#scale-spot);
   fill-opacity:0;
 }
 
