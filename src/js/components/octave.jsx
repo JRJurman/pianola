@@ -1,5 +1,6 @@
 // octave.jsx
 // created By Jesse Jurman
+// represents a single portion of the keyboard
 
 var React = require('react');
 var Teoria = require('../lib/teoria');
