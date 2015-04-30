@@ -11,22 +11,44 @@ rect.black-key {
   fill:rgb(0, 0, 0);
 }
 
+/* for non-webkit browsers */
 rect.white-key.selected {
-  fill:url(#white-press);
+  fill:rgb(255,255,255);
 }
 
 rect.black-key.selected {
-  fill:url(#black-press);
+  fill:rgb(0,0,0);
 }
 
 .chord-keyboard > g > g > circle.key {
-  fill:url(#chord-spot);
+  fill:rgb(255,176,38);
   fill-opacity:0;
 }
 
 .scale-keyboard > g > g > circle.key {
-  fill:url(#scale-spot);
+  fill:rgb(89, 130, 251);
   fill-opacity:0;
+}
+
+/* for webkit browsers */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  rect.white-key.selected {
+    fill:url(#white-press);
+  }
+
+  rect.black-key.selected {
+    fill:url(#black-press);
+  }
+
+  .chord-keyboard > g > g > circle.key {
+    fill:url(#chord-spot);
+    fill-opacity:0;
+  }
+
+  .scale-keyboard > g > g > circle.key {
+    fill:url(#scale-spot);
+    fill-opacity:0;
+  }
 }
 
 .chord-keyboard > g > g > circle.key.selected {
