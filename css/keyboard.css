@@ -12,52 +12,28 @@ rect.black-key {
 }
 
 rect.white-key.selected {
-  fill:rgb(255, 255, 255);
-  fill:url(#white-press);
+  fill:url('/#white-press');
 }
 
 rect.black-key.selected {
-  fill:rgb(0, 0, 0);
-  fill:url(#black-press);
+  fill:url('/#black-press');
 }
 
-.chord-keyboard > g > g > circle.white-key {
-  fill:rgb(255,176,38);
-  fill:url(#chord-spot);
+.chord-keyboard > g > g > circle.key {
+  fill:url('/#chord-spot');
   fill-opacity:0;
 }
 
-.chord-keyboard > g > g > circle.black-key {
-  fill:rgb(255,176,38);
-  fill:url(#chord-spot);
+.scale-keyboard > g > g > circle.key {
+  fill:url('/#scale-spot');
   fill-opacity:0;
 }
 
-.scale-keyboard > g > g > circle.white-key {
-  fill:rgb(89, 130, 251);
-  fill:url(#scale-spot);
-  fill-opacity:0;
-}
-
-.scale-keyboard > g > g > circle.black-key {
-  fill:rgb(89, 130, 251);
-  fill:url(#scale-spot);
-  fill-opacity:0;
-}
-
-.chord-keyboard > g > g > circle.white-key.selected {
+.chord-keyboard > g > g > circle.key.selected {
   fill-opacity:1;
 }
 
-.chord-keyboard > g > g > circle.black-key.selected {
-  fill-opacity:1;
-}
-
-.scale-keyboard > g > g > circle.white-key.selected {
-  fill-opacity:1;
-}
-
-.scale-keyboard > g > g > circle.black-key.selected {
+.scale-keyboard > g > g > circle.key.selected {
   fill-opacity:1;
 }
 
