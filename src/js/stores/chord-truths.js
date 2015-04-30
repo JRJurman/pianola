@@ -1,7 +1,7 @@
 // chord-truths.js
 // created By Jesse Jurman
-// this file stores the effective constants, it is an attempt to reduce
-// the amount of repeated code throughout the project
+// this file stores a few constants
+
 var Fluxxor = require('fluxxor');
 
 var ChordTruths = Fluxxor.createStore({
