@@ -45,7 +45,7 @@ var Octave = React.createClass({
 // A single white key, really an svg-rectangle
 var WhiteKey = React.createClass({
   render: function() {
-    var classname = "white-key key"+this.props.note+this.props.number;
+    var classname = "white-key key "+this.props.note+this.props.number;
     if (this.props.selected) {
       classname += " selected";
     }
@@ -73,7 +73,7 @@ var WhiteKey = React.createClass({
 var BlackKey = React.createClass({
   render: function() {
     var white_key_width = 15;
-    var classname = "black-key key"+this.props.note+this.props.number;
+    var classname = "black-key key "+this.props.note+this.props.number;
     var style = {};
     if (this.props.selected) {
       classname += " selected";
