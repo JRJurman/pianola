@@ -12,31 +12,35 @@ rect.black-key {
 }
 
 rect.white-key.selected {
-  /*fill:rgb(255,166,28);*/
+  fill:rgb(255, 255, 255);
   fill:url(#white-press);
 }
 
 rect.black-key.selected {
-  /*fill:rgb(255,117,24);*/
+  fill:rgb(0, 0, 0);
   fill:url(#black-press);
 }
 
 .chord-keyboard > g > g > circle.white-key {
+  fill:rgb(255,176,38);
   fill:url(#chord-spot);
   fill-opacity:0;
 }
 
 .chord-keyboard > g > g > circle.black-key {
+  fill:rgb(255,176,38);
   fill:url(#chord-spot);
   fill-opacity:0;
 }
 
 .scale-keyboard > g > g > circle.white-key {
+  fill:rgb(89, 130, 251);
   fill:url(#scale-spot);
   fill-opacity:0;
 }
 
 .scale-keyboard > g > g > circle.black-key {
+  fill:rgb(89, 130, 251);
   fill:url(#scale-spot);
   fill-opacity:0;
 }
