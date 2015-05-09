@@ -1,0 +1,21 @@
+/* the following svg code varies from tympanus.net which includes
+   a most useful tutorial on making responsive SVGs (for most browsers)..
+   http://tympanus.net/Tutorials/ResponsiveSVGs/index3.html
+   and the padding-hack found here...
+   http://thatemil.com/blog/2014/04/06/intrinsic-sizing-of-svg-in-responsive-web-design/
+*/
+
+div.svg-divbox {
+  height: 0;
+  padding-top: 15%;
+  position: relative;
+}
+
+svg.svg-keyboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
