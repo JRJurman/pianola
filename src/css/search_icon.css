@@ -1,0 +1,22 @@
+/* add the search icon, taken from stackoverflow:
+  http://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-box
+*/
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .fa {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.right-addon .fa {
+  right: 0px;
+  z-index: 2;
+}
+
+/* add padding  */
+.right-addon .selectize-input { padding-right: 30px; }

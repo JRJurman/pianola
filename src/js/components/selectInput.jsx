@@ -21,10 +21,16 @@ var SelectInput = React.createClass({
   },
 
   render: function() {
-    var placeholder = "Click here, and type in your chords!";
+    var placeholder = "";
+    var hasItemsClass = "no-items";
+    var flux = this.getFlux();
+    if (flux.stores.Keyboards.keyboards.length > 0) {
+      hasItemsClass = "items";
+    }
     return (
-      <div className="inner-addon right-addon">
-        <i className="fa fa-search"></i>
+      <div className="inner-addon center-addon">
+        {/* <i className="fa fa-search"></i> */}
+        <div className={"search-text "+hasItemsClass}>type here to add chords or scales</div>
         <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
           <ChordGroups chordTruths={this.props.chordTruths} />
           <ScaleGroups chordTruths={this.props.chordTruths} />
