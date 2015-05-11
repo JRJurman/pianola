@@ -28,9 +28,9 @@ var SelectInput = React.createClass({
       hasItemsClass = "items";
     }
     return (
-      <div className="inner-addon center-addon">
-        {/* <i className="fa fa-search"></i> */}
-        <div className={"search-text "+hasItemsClass}>type here to add chords or scales</div>
+      <div className="inner-addon left-addon">
+        <i className="fa fa-search"></i>
+      {/* <div className={"search-text "+hasItemsClass}>type here to add chords or scales</div> */}
         <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
           <ChordGroups chordTruths={this.props.chordTruths} />
           <ScaleGroups chordTruths={this.props.chordTruths} />
