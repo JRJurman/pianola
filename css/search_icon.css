@@ -13,10 +13,12 @@
 }
 
 /* align icon */
-.right-addon .fa {
-  right: 0px;
+.left-addon .fa {
+  left: 0px;
   z-index: 2;
 }
 
 /* add padding  */
-.right-addon .selectize-input { padding-right: 30px; }
+.selectize-input {
+  padding-left: 30px !important;
+}
