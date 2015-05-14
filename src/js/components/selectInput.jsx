@@ -81,7 +81,8 @@ var SelectInput = React.createClass({
           var tChord = Teoria.chord( input );
           return {
             value: tChord.name,
-            text: tChord.name
+            text: tChord.name,
+            optgroup: "Created Chords"
           };
         },
         createFilter: function( input ) {
