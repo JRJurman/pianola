@@ -14,12 +14,18 @@ var ChordTruths = Fluxxor.createStore({
     this.generalChords = [
       "", "m", "7", "m7", "M7", " dim", "aug", "6", "m6", "sus4", "sus2"
     ];
+
+    this.defaultChords = this.keys.reduce( (chords, key, i, keys) => {
+      Array.prototype.push.apply(chords, this.generalChords.map( (k) => { return key+k }));
+      return chords;
+    }, []);
   },
 
   getState: function() {
     return {
       keys: this.keys,
-      generalChords: this.generalChords
+      generalChords: this.generalChords,
+      defaultChords: this.defaultChords
     }
   }
 });

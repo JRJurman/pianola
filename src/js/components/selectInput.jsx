@@ -8,6 +8,7 @@ var Fluxxor = require('fluxxor');
 var Keyboarder = require('./keyboarder');
 var Teoria = require('../lib/teoria');
 var ChordGroups = require('./chordGroups');
+var CustomGroups = require('./customGroups');
 var ScaleGroups = require('./scaleGroups');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
@@ -16,25 +17,42 @@ var FluxMixin = Fluxxor.FluxMixin(React);
 var SelectInput = React.createClass({
   mixins: [FluxMixin],
 
+  // spacer -> a way to push the chords under the dropdown
+  // selectized -> a way to prevent react from re-rendering dom that has
+  //                already been modified by selectized
   getInitialState: function() {
-    return {spacer: {}};
+    return {
+      spacer: {},
+      selectized: false,
+    };
   },
 
   render: function() {
     var placeholder = "";
     var hasItemsClass = "no-items";
     var flux = this.getFlux();
-    if (flux.stores.Keyboards.keyboards.length > 0) {
+    if (this.props.keyboards > 0) {
       hasItemsClass = "items";
     }
-    return (
-      <div className="inner-addon left-addon">
-        <i className="fa fa-search"></i>
-      {/* <div className={"search-text "+hasItemsClass}>type here to add chords or scales</div> */}
+
+    var select;
+    if (!this.state.selectized) {
+      select = (
         <select id="input-tags" ref="chordinput" multiple placeholder={placeholder}>
           <ChordGroups chordTruths={this.props.chordTruths} />
           <ScaleGroups chordTruths={this.props.chordTruths} />
+          <CustomGroups chordTruths={this.props.chordTruths} customChords={this.props.keyboards} />
         </select>
+      );
+    }
+    else {
+      select = (<div />);
+    }
+
+    return (
+      <div className="inner-addon left-addon">
+        <i className="fa fa-search"></i>
+        { select }
         <div id="spacer" style={this.state.spacer}></div>
       </div>
     );
@@ -45,7 +63,7 @@ var SelectInput = React.createClass({
     var dropbox = document.querySelector(".selectize-dropdown-content");
     var newHeight = dropbox.getBoundingClientRect().height;
 
-    this.setState({spacer: {marginTop:`${newHeight}px`}});
+    this.setState({spacer: {marginTop:`${newHeight}px`}, selectized: this.state.selectized});
   },
 
   // when it mounts, add all the selectize attributes
@@ -143,6 +161,8 @@ var SelectInput = React.createClass({
         }
     });
     /* end selectize stuff */
+
+    this.setState({spacer: this.state.spacer, selectized: true});
 
   }
 });

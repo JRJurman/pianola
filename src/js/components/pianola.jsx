@@ -36,7 +36,7 @@ var Pianola = React.createClass({
         <a href="https://github.com/jrjurman/pianola/">
             <i className="fa fa-github fa-lg heading-icon" />
         </a>
-        <SelectInput id="input-tags-div" chordTruths={this.state.chordTruths} />
+        <SelectInput id="input-tags-div" chordTruths={this.state.chordTruths} keyboards={flux.stores.Keyboards.keyboards} />
         <Keyboarder keyboards={this.state.keyboards} />
       </div>
     );
