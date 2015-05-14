@@ -50,7 +50,7 @@ var SelectInput = React.createClass({
     }
 
     return (
-      <div className="inner-addon left-addon">
+      <div className="inner-addon left-addon selectize-div">
         <i className="fa fa-search"></i>
         { select }
         <div id="spacer" style={this.state.spacer}></div>
