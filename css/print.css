@@ -65,4 +65,14 @@
     margin-right: 0px;
   }
 
+  /* styling to hide the selectize-input */
+  div.selectize-div {
+    display: none;
+  }
+
+  /* styling to hide the buttons and icons */
+  i.fa, a {
+    display: none;
+  }
+
 }
